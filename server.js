@@ -123,8 +123,6 @@ app.post("/register", async (req, res) => {
     nama,
     email,
     password,
-
-    // Data anak
     nama_anak,
     nama_panggilan,
     ttl,
@@ -135,8 +133,6 @@ app.post("/register", async (req, res) => {
     no_telepon,
     alamat_anak,
     size_seragam,
-
-    // Data ayah
     nama_ayah,
     ttl_ayah,
     pekerjaan_ayah,
@@ -144,8 +140,6 @@ app.post("/register", async (req, res) => {
     pendidikan_ayah,
     alamat_ayah,
     kantor_ayah,
-
-    // Data ibu
     nama_ibu,
     ttl_ibu,
     pekerjaan_ibu,
@@ -153,95 +147,126 @@ app.post("/register", async (req, res) => {
     pendidikan_ibu,
     alamat_ibu,
     kantor_ibu,
-
-    // Wali akun
     nama_ortu,
   } = req.body;
 
-  if (!nama || !email || !password || !nama_anak) {
+  const cleanEmail = String(email || "")
+    .trim()
+    .toLowerCase();
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!nama || !cleanEmail || !password || !nama_anak) {
     return res.json({ success: false, message: "Data tidak lengkap" });
   }
 
-  try {
-    const hash = await bcrypt.hash(password, 10);
+  if (!emailValid.test(cleanEmail)) {
+    return res.json({ success: false, message: "Format email tidak valid" });
+  }
 
+  try {
     db.query(
-      "INSERT INTO users (nama,email,password,role) VALUES (?,?,?,?)",
-      [nama, email, hash, "wali"],
-      (err, result) => {
-        if (err) {
-          console.error("REGISTER ERROR:", err);
-          return res.json({
-            success: false,
-            message: err.sqlMessage || "Email sudah digunakan",
-          });
+      "SELECT id FROM users WHERE email = ? LIMIT 1",
+      [cleanEmail],
+      async (cekErr, cekResult) => {
+        if (cekErr) {
+          console.error("CEK EMAIL ERROR:", cekErr);
+          return res.json({ success: false, message: "Database error" });
         }
 
-        const userId = result.insertId;
+        if (cekResult.length > 0) {
+          return res.json({ success: false, message: "Email sudah digunakan" });
+        }
 
-        const sql = `
-          INSERT INTO pendaftaran (
-            user_id,
-            nama_anak, nama_panggilan, ttl, jk, agama,
-            anak_ke, jumlah_saudara, no_telepon, alamat_anak, size_seragam,
-            nama_ayah, ttl_ayah, pekerjaan_ayah, agama_ayah,
-            pendidikan_ayah, alamat_ayah, kantor_ayah,
-            nama_ibu, ttl_ibu, pekerjaan_ibu, agama_ibu,
-            pendidikan_ibu, alamat_ibu, kantor_ibu,
-            nama_ortu, status
-          ) VALUES (
-            ?,
-            ?,?,?,?,?,
-            ?,?,?,?,?,
-            ?,?,?,?,
-            ?,?,?,
-            ?,?,?,?,
-            ?,?,?,
-            ?,?
-          )`;
+        const hash = await bcrypt.hash(password, 10);
 
-        const values = [
-          userId,
-          nama_anak || "",
-          nama_panggilan || "",
-          ttl || "",
-          jk || "",
-          agama || "",
-          anak_ke || 1,
-          jumlah_saudara || 0,
-          no_telepon || "",
-          alamat_anak || "",
-          size_seragam || "",
-          nama_ayah || "",
-          ttl_ayah || "",
-          pekerjaan_ayah || "",
-          agama_ayah || "",
-          pendidikan_ayah || "",
-          alamat_ayah || "",
-          kantor_ayah || "",
-          nama_ibu || "",
-          ttl_ibu || "",
-          pekerjaan_ibu || "",
-          agama_ibu || "",
-          pendidikan_ibu || "",
-          alamat_ibu || "",
-          kantor_ibu || "",
-          nama_ortu || nama,
-          "Menunggu Verifikasi",
-        ];
+        db.query(
+          "INSERT INTO users (nama,email,password,role) VALUES (?,?,?,?)",
+          [nama, cleanEmail, hash, "wali"],
+          (err, result) => {
+            if (err) {
+              console.error("REGISTER USER ERROR:", err);
+              return res.json({
+                success: false,
+                message: "Gagal membuat akun",
+              });
+            }
 
-        db.query(sql, values, (err2) => {
-          if (err2) {
-            console.error("INSERT PENDAFTARAN ERROR:", err2);
-            return res.json({
-              success: false,
-              message: "Gagal simpan data siswa",
+            const userId = result.insertId;
+
+            const sql = `
+              INSERT INTO pendaftaran (
+                user_id,
+                nama_anak, nama_panggilan, ttl, jk, agama,
+                anak_ke, jumlah_saudara, no_telepon, alamat_anak, size_seragam,
+                nama_ayah, ttl_ayah, pekerjaan_ayah, agama_ayah,
+                pendidikan_ayah, alamat_ayah, kantor_ayah,
+                nama_ibu, ttl_ibu, pekerjaan_ibu, agama_ibu,
+                pendidikan_ibu, alamat_ibu, kantor_ibu,
+                nama_ortu, status
+              ) VALUES (
+                ?,
+                ?,?,?,?,?,
+                ?,?,?,?,?,
+                ?,?,?,?,
+                ?,?,?,
+                ?,?,?,?,
+                ?,?,?,
+                ?,?
+              )`;
+
+            const values = [
+              userId,
+              nama_anak || "",
+              nama_panggilan || "",
+              ttl || "",
+              jk || "",
+              agama || "",
+              anak_ke || 1,
+              jumlah_saudara || 0,
+              no_telepon || "",
+              alamat_anak || "",
+              size_seragam || "",
+              nama_ayah || "",
+              ttl_ayah || "",
+              pekerjaan_ayah || "",
+              agama_ayah || "",
+              pendidikan_ayah || "",
+              alamat_ayah || "",
+              kantor_ayah || "",
+              nama_ibu || "",
+              ttl_ibu || "",
+              pekerjaan_ibu || "",
+              agama_ibu || "",
+              pendidikan_ibu || "",
+              alamat_ibu || "",
+              kantor_ibu || "",
+              nama_ortu || nama,
+              "Menunggu Verifikasi",
+            ];
+
+            db.query(sql, values, (err2) => {
+              if (err2) {
+                console.error("INSERT PENDAFTARAN ERROR:", err2);
+
+                db.query("DELETE FROM users WHERE id = ?", [userId]);
+
+                return res.json({
+                  success: false,
+                  message: "Gagal simpan data siswa",
+                });
+              }
+
+              req.session.user = {
+                id: userId,
+                nama,
+                email: cleanEmail,
+                role: "wali",
+              };
+
+              res.json({ success: true, redirect: "/dashboard" });
             });
-          }
-
-          req.session.user = { id: userId, nama, email, role: "wali" };
-          res.json({ success: true, redirect: "/dashboard" });
-        });
+          },
+        );
       },
     );
   } catch (e) {
