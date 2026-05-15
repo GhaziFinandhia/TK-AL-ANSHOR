@@ -11,7 +11,7 @@ const PORT = 3000;
 
 async function ensureAdmin() {
   const email = "admin@tkalanshor.sch.id";
-  const password = "admin123";
+  const password = "AlAnshor2026!";
   const hash = await bcrypt.hash(password, 10);
 
   db.query(
@@ -599,6 +599,8 @@ app.use((req, res) => {
 /* ==================================
    START
 ================================== */
+ensureAdmin();
+
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Server jalan di network port ${PORT}`);
 });
