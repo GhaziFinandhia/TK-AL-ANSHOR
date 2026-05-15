@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | TK AL ANSHOR</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --teal: #0f7c5e;
+        --teal-dark: #085041;
+        --teal-mid: #17a67e;
+        --teal-light: #e1f5ee;
+        --gold: #c9a84c;
+        --gold-light: #f5e9c8;
+        --text: #1a2a22;
+        --muted: #5a7268;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f0faf6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* NAVBAR */
+      nav {
+        width: 100%;
+        height: 68px;
+        background: var(--teal-dark);
+        padding: 0 52px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--gold);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        flex-shrink: 0;
+      }
+
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        min-width: 0;
+      }
+
+      .nav-logo img {
+        width: 42px;
+        height: 42px;
+        background: #fff;
+        border-radius: 9px;
+        padding: 4px;
+        object-fit: contain;
+        flex-shrink: 0;
+      }
+
+      .nav-logo-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 0;
+      }
+
+      .nav-logo-text h1 {
+        font-family: "Amiri", serif;
+        color: #fff;
+        font-size: 19px;
+        line-height: 1.15;
+        white-space: nowrap;
+      }
+
+      .nav-logo-text span {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.65);
+        font-weight: 400;
+        margin-top: 2px;
+        white-space: nowrap;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition: 0.2s;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-daftar {
+        background: var(--gold) !important;
+        color: var(--teal-dark) !important;
+        font-weight: 700 !important;
+      }
+
+      .menu-toggle {
+        display: none;
+        background: transparent;
+        border: none;
+        color: #ffffff !important;
+        font-size: 32px;
+        cursor: pointer;
+        line-height: 1;
+        z-index: 99999;
+        position: relative;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      /* MAIN LOGIN */
+      .main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 24px;
+      }
+
+      .login-card {
+        background: #fff;
+        border-radius: 20px;
+        width: 100%;
+        max-width: 420px;
+        box-shadow: 0 4px 32px rgba(15, 124, 94, 0.1);
+        border: 1px solid #d8ede5;
+        overflow: hidden;
+      }
+
+      .card-header {
+        background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+        padding: 32px 36px 24px;
+        text-align: center;
+      }
+
+      .card-header::after {
+        content: "✦  ✦  ✦";
+        display: block;
+        color: rgba(201, 168, 76, 0.45);
+        font-size: 11px;
+        letter-spacing: 10px;
+        margin-top: 10px;
+      }
+
+      .logo-wrap {
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 14px;
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+      }
+
+      .logo-wrap img {
+        width: 46px;
+      }
+
+      .card-header h2 {
+        font-family: "Amiri", serif;
+        font-size: 26px;
+        color: #fff;
+        margin-bottom: 4px;
+      }
+
+      .card-header p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .card-body {
+        padding: 28px 32px 32px;
+      }
+
+      .err-box {
+        background: #fef0f0;
+        border: 1px solid #fbc9c9;
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 13px;
+        color: #8b2020;
+        margin-bottom: 16px;
+        display: none;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .err-box.show {
+        display: flex;
+      }
+
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      .form-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+
+      .input-wrap {
+        position: relative;
+      }
+
+      .input-wrap i {
+        position: absolute;
+        left: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #b0c4bc;
+        font-size: 14px;
+        pointer-events: none;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 12px 13px 12px 38px;
+        border: 1.5px solid #d8ede5;
+        border-radius: 10px;
+        font-family: "Poppins", sans-serif;
+        font-size: 14px;
+        color: var(--text);
+        background: #fafffe;
+        outline: none;
+        transition: 0.2s;
+      }
+
+      .form-input:focus {
+        border-color: var(--teal);
+        box-shadow: 0 0 0 3px rgba(15, 124, 94, 0.1);
+        background: #fff;
+      }
+
+      .btn-login {
+        width: 100%;
+        padding: 13px;
+        margin-top: 6px;
+        background: linear-gradient(135deg, var(--teal), var(--teal-mid));
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        font-family: "Poppins", sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+
+      .btn-login:hover:not(:disabled) {
+        background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+        transform: translateY(-1px);
+        box-shadow: 0 6px 20px rgba(15, 124, 94, 0.25);
+      }
+
+      .btn-login:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
+      .spinner {
+        display: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        border-top-color: #fff;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        margin: 0 auto;
+      }
+
+      .btn-login.loading .btn-text {
+        display: none;
+      }
+
+      .btn-login.loading .spinner {
+        display: block;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .divider {
+        text-align: center;
+        margin: 18px 0;
+        position: relative;
+      }
+
+      .divider::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: #e4ede9;
+      }
+
+      .divider span {
+        position: relative;
+        background: #fff;
+        padding: 0 12px;
+        font-size: 12px;
+        color: #b0c4bc;
+      }
+
+      .link-txt {
+        text-align: center;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .link-txt a {
+        color: var(--teal);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--teal-dark);
+        color: #fff;
+        padding: 48px 52px 24px;
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      .footer-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 280px 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 36px;
+      }
+
+      .footer-brand img {
+        width: 64px;
+        background: #fff;
+        border-radius: 12px;
+        padding: 6px;
+        margin-bottom: 14px;
+        display: block;
+      }
+
+      .footer-brand h3 {
+        font-family: "Amiri", serif;
+        font-size: 20px;
+        color: #fff;
+        margin-bottom: 6px;
+      }
+
+      .footer-brand p,
+      .footer-col p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.8;
+      }
+
+      .footer-col h4 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gold-light);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+
+      .footer-col p strong {
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .footer-social {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 4px;
+      }
+
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 13px;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+
+      .social-link:hover {
+        color: #fff;
+      }
+
+      .social-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      .si-fb {
+        background: #1877f2;
+      }
+
+      .si-ig {
+        background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+      }
+
+      .si-yt {
+        background: #ff0000;
+      }
+
+      .footer-divider {
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        max-width: 1160px;
+        margin: 0 auto 20px;
+      }
+
+      .footer-copy {
+        text-align: center;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+
+      /* WHATSAPP */
+      .wa-wrapper {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .wa-label {
+        background: white;
+        color: #085041;
+        padding: 10px 14px;
+        border-radius: 14px;
+        font-size: 13px;
+        font-weight: 600;
+        text-align: center;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        border: 1px solid #d8ede5;
+        line-height: 1.4;
+      }
+
+      .whatsapp-float {
+        width: 78px;
+        height: 78px;
+        background: #25d366;
+        border-radius: 50%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px;
+        text-decoration: none;
+        box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
+        animation: waPulse 1.8s infinite;
+        transition: 0.25s;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+        background: #1ebd5a;
+      }
+
+      @keyframes waPulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+        }
+        70% {
+          box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+      }
+
+      /* MOBILE */
+      @media (max-width: 768px) {
+        nav {
+          height: 68px;
+          padding: 0 18px;
+          overflow: visible;
+        }
+
+        .nav-logo {
+          gap: 9px;
+        }
+
+        .nav-logo img {
+          width: 40px;
+          height: 40px;
+        }
+
+        .nav-logo-text h1 {
+          font-size: 16px;
+        }
+
+        .nav-logo-text span {
+          font-size: 10px;
+        }
+
+        .menu-toggle {
+          display: flex !important;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 68px;
+          left: 0;
+          width: 100%;
+          background: var(--teal-dark);
+          display: none;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 8px;
+          padding: 14px 18px 18px;
+          border-bottom: 2px solid var(--gold);
+          z-index: 999;
+        }
+
+        .nav-links.show {
+          display: flex;
+        }
+
+        .nav-links a {
+          width: 100%;
+          text-align: center;
+          padding: 13px 16px;
+          font-size: 15px;
+          margin: 0;
+        }
+
+        .main {
+          padding: 32px 16px;
+        }
+
+        .login-card {
+          max-width: 100%;
+        }
+
+        .card-header {
+          padding: 28px 24px 22px;
+        }
+
+        .card-body {
+          padding: 24px 22px 28px;
+        }
+
+        footer {
+          padding: 40px 22px 22px;
+        }
+
+        .footer-inner {
+          grid-template-columns: 1fr;
+          gap: 26px;
+        }
+
+        .wa-wrapper {
+          right: 14px;
+          bottom: 14px;
+        }
+
+        .wa-label {
+          font-size: 11px;
+          padding: 8px 10px;
+        }
+
+        .whatsapp-float {
+          width: 62px;
+          height: 62px;
+          font-size: 34px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav>
+      <a href="/" class="nav-logo">
+        <img src="/images/logo.png" alt="Logo TK AL ANSHOR" />
+        <div class="nav-logo-text">
+          <h1>TK AL ANSHOR</h1>
+          <span>Taman Kanak-Kanak Islami</span>
+        </div>
+      </a>
+
+      <button class="menu-toggle" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="nav-links" id="mobileMenu">
+        <a href="/">Home</a>
+        <a href="/galeri">Galeri</a>
+        <a href="/login" class="active">Login</a>
+        <a href="/register" class="nav-daftar">Daftar</a>
+      </div>
+    </nav>
+
+    <div class="main">
+      <div class="login-card">
+        <div class="card-header">
+          <div class="logo-wrap">
+            <img src="/images/logo.png" alt="Logo" />
+          </div>
+          <h2>Selamat Datang</h2>
+          <p>Masuk ke akun orang tua / wali</p>
+        </div>
+
+        <div class="card-body">
+          <div class="err-box" id="err-box">
+            <i class="fas fa-exclamation-circle"></i>
+            <span id="err-text"></span>
+          </div>
+
+          <form id="login-form" onsubmit="doLogin(event)">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <div class="input-wrap">
+                <i class="fas fa-envelope"></i>
+                <input
+                  type="email"
+                  id="inp-email"
+                  class="form-input"
+                  placeholder="nama@email.com"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Password</label>
+              <div class="input-wrap">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  id="inp-pass"
+                  class="form-input"
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="btn-login" id="btn-login">
+              <span class="btn-text">Masuk Sekarang</span>
+              <div class="spinner"></div>
+            </button>
+          </form>
+
+          <div class="divider"><span>atau</span></div>
+
+          <p class="link-txt">
+            Belum punya akun? <a href="/register">Daftar di sini</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="/images/logo.png" alt="Logo" />
+          <h3>TK AL ANSHOR</h3>
+          <p>
+            Taman Kanak-Kanak Islami yang berkomitmen pada pendidikan karakter
+            dan prestasi anak.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Info</h4>
+          <p><strong>Telepon</strong></p>
+          <p>081298077964</p>
+          <p style="margin-top: 10px"><strong>Alamat</strong></p>
+          <p>Jl. Raya Legok, Kec. Legok,<br />Kab. Tangerang, Prov. Banten.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Media Sosial</h4>
+          <div class="footer-social">
+            <a href="#" class="social-link">
+              <span class="social-icon si-fb">
+                <i class="fab fa-facebook-f"></i>
+              </span>
+              @RA Al-Anshor Legok
+            </a>
+            <a href="#" class="social-link">
+              <span class="social-icon si-ig">
+                <i class="fab fa-instagram"></i>
+              </span>
+              @ra.alanshor
+            </a>
+            <a href="#" class="social-link">
+              <span class="social-icon si-yt">
+                <i class="fab fa-youtube"></i>
+              </span>
+              RA. Al-Anshor
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <hr class="footer-divider" />
+      <p class="footer-copy">© 2026 TK AL ANSHOR. All rights reserved.</p>
+    </footer>
+
+    <div class="wa-wrapper">
+      <div class="wa-label">Info Pendaftaran?<br />Hubungi Admin</div>
+
+      <a
+        href="https://wa.me/6281298077964?text=Halo%20Admin%20TK%20AL%20ANSHOR,%20saya%20ingin%20bertanya%20tentang%20pendaftaran"
+        class="whatsapp-float"
+        target="_blank"
+      >
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        document.getElementById("mobileMenu").classList.toggle("show");
+      }
+
+      async function doLogin(e) {
+        e.preventDefault();
+
+        const btn = document.getElementById("btn-login");
+        const errBox = document.getElementById("err-box");
+        const errText = document.getElementById("err-text");
+        const email = document.getElementById("inp-email").value.trim();
+        const password = document.getElementById("inp-pass").value;
+
+        errBox.classList.remove("show");
+        btn.classList.add("loading");
+        btn.disabled = true;
+
+        try {
+          const res = await fetch("/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+
+          const data = await res.json();
+
+          if (data.success) {
+            window.location.href = data.redirect;
+          } else {
+            errText.textContent = data.message || "Login gagal";
+            errBox.classList.add("show");
+            btn.classList.remove("loading");
+            btn.disabled = false;
+          }
+        } catch (err) {
+          console.error("Login error:", err);
+          errText.textContent = "Gagal menghubungi server. Coba lagi.";
+          errBox.classList.add("show");
+          btn.classList.remove("loading");
+          btn.disabled = false;
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1565 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pendaftaran | TK AL ANSHOR</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --teal: #0f7c5e;
+        --teal-dark: #085041;
+        --teal-mid: #17a67e;
+        --teal-light: #e1f5ee;
+        --teal-pale: #f0faf6;
+        --gold: #c9a84c;
+        --text: #1a2a22;
+        --muted: #5a7268;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #f0faf6;
+      }
+      nav {
+        background: var(--teal-dark);
+        height: 68px;
+        padding: 0 52px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--gold);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .nav-logo img {
+        width: 42px;
+        background: #fff;
+        border-radius: 9px;
+        padding: 4px;
+      }
+      .nav-logo-text h1 {
+        font-family: "Amiri", serif;
+        color: #fff;
+        font-size: 19px;
+        line-height: 1.2;
+      }
+      .nav-logo-text span {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .nav-links a {
+        color: rgba(255, 255, 255, 0.8);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition: 0.2s;
+      }
+      .nav-links a:hover {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .nav-links .btn-daftar {
+        background: var(--gold);
+        color: var(--teal-dark);
+        font-weight: 600;
+      }
+      .page-wrap {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+      }
+      .page-head {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+      .page-head h2 {
+        font-family: "Amiri", serif;
+        font-size: 30px;
+        color: var(--teal-dark);
+        margin-bottom: 4px;
+      }
+      .page-head p {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .steps {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 28px;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      .step-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #aaa;
+      }
+      .step-circle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        background: #e4ede9;
+        color: #aaa;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 700;
+        transition: 0.3s;
+        flex-shrink: 0;
+        border: 2px solid transparent;
+      }
+      .step-item.active .step-circle {
+        background: var(--teal);
+        color: #fff;
+        border-color: var(--teal);
+      }
+      .step-item.done .step-circle {
+        background: var(--teal-light);
+        color: var(--teal);
+      }
+      .step-item.active .step-label {
+        color: var(--teal);
+        font-weight: 700;
+      }
+      .step-item.done .step-label {
+        color: var(--teal);
+      }
+      .step-line {
+        width: 28px;
+        height: 2px;
+        background: #e4ede9;
+        margin: 0 2px;
+        transition: 0.3s;
+      }
+      .step-line.done {
+        background: var(--teal);
+      }
+      .form-card {
+        background: #fff;
+        border-radius: 20px;
+        box-shadow: 0 4px 24px rgba(15, 124, 94, 0.08);
+        border: 1px solid #d8ede5;
+        overflow: hidden;
+        margin-top: 12px;
+      }
+      .card-top {
+        background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+        padding: 18px 26px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .card-top-icon {
+        width: 38px;
+        height: 38px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 17px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        flex-shrink: 0;
+      }
+      .card-top h3 {
+        font-family: "Amiri", serif;
+        font-size: 19px;
+        color: #fff;
+        margin-bottom: 2px;
+      }
+      .card-top p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .card-body {
+        padding: 24px 26px;
+      }
+      .form-step {
+        display: none;
+      }
+      .form-step.active {
+        display: block;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .form-group {
+        margin-bottom: 14px;
+      }
+      .form-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 5px;
+      }
+      .form-label span {
+        color: #e05050;
+        margin-left: 2px;
+      }
+      .inp {
+        width: 100%;
+        padding: 10px 13px;
+        border: 1.5px solid #d8ede5;
+        border-radius: 9px;
+        font-family: "Poppins", sans-serif;
+        font-size: 13px;
+        color: var(--text);
+        background: #fafffe;
+        outline: none;
+        transition: 0.2s;
+        margin: 0;
+      }
+      .inp:focus {
+        border-color: var(--teal);
+        box-shadow: 0 0 0 3px rgba(15, 124, 94, 0.09);
+        background: #fff;
+      }
+      textarea.inp {
+        resize: vertical;
+        min-height: 72px;
+        padding-top: 10px;
+      }
+      .radio-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 4px;
+      }
+      .radio-option {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        cursor: pointer;
+        font-size: 13px;
+        color: var(--text);
+      }
+      .radio-option input[type="radio"] {
+        width: 16px;
+        height: 16px;
+        accent-color: var(--teal);
+        cursor: pointer;
+        margin: 0;
+      }
+      .upload-box {
+        border: 2px dashed #d8ede5;
+        border-radius: 10px;
+        padding: 18px;
+        text-align: center;
+        cursor: pointer;
+        background: #fafffe;
+        transition: 0.25s;
+        position: relative;
+      }
+      .upload-box:hover {
+        border-color: var(--teal);
+        background: var(--teal-pale);
+      }
+      .upload-box.has-file {
+        border-color: var(--teal);
+        background: var(--teal-light);
+      }
+      .upload-box input[type="file"] {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        border: none;
+        font-size: 0;
+      }
+      .upload-icon {
+        font-size: 22px;
+        color: var(--teal);
+        margin-bottom: 5px;
+      }
+      .upload-txt {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .upload-name {
+        font-size: 12px;
+        color: var(--teal);
+        font-weight: 600;
+        margin-top: 4px;
+      }
+      .btn-row {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid #f0f5f3;
+      }
+      .btn-prev {
+        padding: 10px 20px;
+        background: #f0f5f3;
+        color: var(--muted);
+        border: none;
+        border-radius: 8px;
+        font-family: "Poppins", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .btn-prev:hover {
+        background: #e4ede9;
+      }
+      .btn-next,
+      .btn-submit-reg {
+        padding: 10px 24px;
+        background: var(--teal);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-family: "Poppins", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        width: auto;
+        margin: 0;
+        transition: 0.2s;
+      }
+      .btn-next:hover,
+      .btn-submit-reg:hover {
+        background: var(--teal-dark);
+      }
+      .err-box {
+        background: #fef0f0;
+        border: 1px solid #fbc9c9;
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 13px;
+        color: #8b2020;
+        margin: 12px 0 0;
+        display: none;
+      }
+      .err-box.show {
+        display: block;
+      }
+      .sukses {
+        text-align: center;
+        padding: 36px 20px;
+      }
+      .sukses-icon {
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        background: var(--teal-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        margin: 0 auto 16px;
+      }
+      .sukses h3 {
+        font-family: "Amiri", serif;
+        font-size: 24px;
+        color: var(--teal-dark);
+        margin-bottom: 6px;
+      }
+      .sukses p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 20px;
+        line-height: 1.7;
+      }
+      .btn-dash {
+        display: inline-block;
+        padding: 11px 26px;
+        background: var(--teal);
+        color: #fff;
+        border-radius: 9px;
+        font-weight: 600;
+        text-decoration: none;
+        font-size: 13px;
+      }
+      footer {
+        background: var(--teal-dark);
+        color: #fff;
+        padding: 48px 52px 24px;
+      }
+      .footer-inner {
+        max-width: 1160px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 280px 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 36px;
+      }
+
+      .footer-brand img {
+        width: 64px;
+        background: #fff;
+        border-radius: 12px;
+        padding: 6px;
+        margin-bottom: 14px;
+        display: block;
+      }
+      .footer-brand h3 {
+        font-family: "Amiri", serif;
+        font-size: 20px;
+        color: #fff;
+        margin-bottom: 6px;
+      }
+      .footer-brand p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.55);
+        line-height: 1.65;
+      }
+      .footer-col h4 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--gold-light);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 16px;
+      }
+      .footer-col p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        line-height: 1.8;
+        margin-bottom: 4px;
+      }
+      .footer-col p strong {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .footer-social {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 4px;
+      }
+      .social-link {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 13px;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+      .social-link:hover {
+        color: #fff;
+      }
+      .social-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .si-fb {
+        background: #1877f2;
+      }
+      .si-ig {
+        background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+      }
+      .si-yt {
+        background: #ff0000;
+      }
+      .footer-divider {
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        max-width: 1160px;
+        margin: 0 auto 20px;
+      }
+      .footer-copy {
+        text-align: center;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.4);
+        max-width: 1160px;
+        margin: 0 auto;
+      }
+
+      @media (max-width: 600px) {
+        .step-label {
+          display: none;
+        }
+      }
+
+      /* ── MOBILE NAV FIX ── */
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden !important;
+      }
+
+      nav {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .nav-logo {
+        min-width: 0;
+        flex-shrink: 1;
+      }
+
+      .nav-logo-text {
+        min-width: 0;
+      }
+
+      .nav-logo-text h1,
+      .nav-logo-text span {
+        white-space: nowrap;
+      }
+
+      .menu-toggle {
+        display: none;
+        background: transparent;
+        border: none;
+        color: #ffffff !important;
+        font-size: 30px;
+        cursor: pointer;
+        line-height: 1;
+        z-index: 1002;
+        position: relative;
+        width: 44px;
+        height: 44px;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .menu-toggle i {
+        color: #ffffff !important;
+        font-size: 28px;
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          height: 68px;
+          padding: 0 18px !important;
+          position: sticky;
+          overflow: visible;
+        }
+
+        .nav-logo {
+          gap: 9px;
+        }
+
+        .nav-logo img {
+          width: 40px;
+          height: 40px;
+          object-fit: contain;
+        }
+
+        .nav-logo-text h1 {
+          font-size: 16px;
+          line-height: 1.1;
+        }
+
+        .nav-logo-text span {
+          font-size: 10px;
+        }
+
+        .menu-toggle {
+          display: flex !important;
+        }
+
+        .nav-links {
+          position: absolute;
+          top: 68px;
+          left: 0;
+          right: 0;
+          width: 100%;
+          background: var(--teal-dark);
+          display: none;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 8px;
+          padding: 14px 18px 18px;
+          border-bottom: 2px solid var(--gold);
+          z-index: 999;
+          box-sizing: border-box;
+        }
+
+        .nav-links.show {
+          display: flex;
+        }
+
+        .nav-links a {
+          width: 100%;
+          text-align: center;
+          padding: 13px 16px;
+          font-size: 15px;
+          margin: 0;
+          border-radius: 10px;
+          display: block;
+        }
+
+        .nav-links a.active,
+        .nav-links a:hover {
+          background: rgba(255, 255, 255, 0.1);
+          color: #fff;
+        }
+
+        .nav-links .btn-daftar {
+          margin-top: 6px;
+        }
+
+        .page-wrap {
+          width: 100%;
+          max-width: 100%;
+          padding: 28px 14px 60px !important;
+          overflow-x: hidden;
+        }
+
+        .page-head h2 {
+          font-size: 26px;
+        }
+
+        .steps {
+          gap: 5px;
+          overflow-x: hidden;
+        }
+
+        .step-line {
+          width: 18px;
+        }
+
+        .form-card {
+          width: 100%;
+          border-radius: 18px;
+        }
+
+        .card-top {
+          padding: 16px 18px;
+        }
+
+        .card-top h3 {
+          font-size: 17px;
+        }
+
+        .card-body {
+          padding: 20px 18px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr !important;
+          gap: 0;
+        }
+
+        .btn-row {
+          flex-direction: column;
+        }
+
+        .btn-prev,
+        .btn-next,
+        .btn-submit-reg,
+        .btn-dash {
+          width: 100%;
+          text-align: center;
+        }
+
+        footer {
+          width: 100%;
+          overflow-x: hidden;
+          padding: 40px 22px 22px;
+        }
+
+        .footer-inner {
+          grid-template-columns: 1fr !important;
+          gap: 24px;
+        }
+
+        .wa-wrapper {
+          right: 14px !important;
+          bottom: 14px !important;
+        }
+
+        .wa-label {
+          font-size: 11px !important;
+          padding: 8px 10px !important;
+        }
+
+        .whatsapp-float {
+          width: 62px !important;
+          height: 62px !important;
+          font-size: 34px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="nav-logo">
+        <img src="/images/logo.png" alt="Logo" />
+        <div class="nav-logo-text">
+          <h1>TK AL ANSHOR</h1>
+          <span>Taman Kanak-Kanak Islami</span>
+        </div>
+      </a>
+
+      <button class="menu-toggle" onclick="toggleMenu()" aria-label="Buka menu">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="nav-links" id="mobileMenu">
+        <a href="/">Home</a>
+        <a href="/galeri">Galeri</a>
+        <a href="/login">Login</a>
+        <a href="/register" class="btn-daftar active">Daftar</a>
+      </div>
+    </nav>
+
+    <div class="page-wrap">
+      <div class="page-head">
+        <h2>Formulir Pendaftaran</h2>
+        <p>TK AL ANSHOR — Tahun Ajaran 2026/2027</p>
+      </div>
+
+      <div class="steps">
+        <div class="step-item active" id="si-1">
+          <div class="step-circle">1</div>
+          <span class="step-label">Data Anak</span>
+        </div>
+        <div class="step-line" id="sl-1"></div>
+        <div class="step-item" id="si-2">
+          <div class="step-circle">2</div>
+          <span class="step-label">Data Ayah</span>
+        </div>
+        <div class="step-line" id="sl-2"></div>
+        <div class="step-item" id="si-3">
+          <div class="step-circle">3</div>
+          <span class="step-label">Data Ibu</span>
+        </div>
+        <div class="step-line" id="sl-3"></div>
+        <div class="step-item" id="si-4">
+          <div class="step-circle">4</div>
+          <span class="step-label">Akun</span>
+        </div>
+        <div class="step-line" id="sl-4"></div>
+        <div class="step-item" id="si-5">
+          <div class="step-circle">5</div>
+          <span class="step-label">Dokumen</span>
+        </div>
+      </div>
+
+      <div id="err-box" class="err-box"></div>
+
+      <div class="form-card">
+        <!-- STEP 1: DATA ANAK -->
+        <div class="form-step active" id="step-1">
+          <div class="card-top">
+            <div class="card-top-icon">👶</div>
+            <div>
+              <h3>Data Calon Peserta Didik</h3>
+              <p>Isi data lengkap calon siswa/siswi</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nama Siswa/Siswi <span>*</span></label
+                ><input
+                  class="inp"
+                  type="text"
+                  id="nama_anak"
+                  placeholder="Nama lengkap sesuai akta"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Nama Panggilan <span>*</span></label
+                ><input
+                  class="inp"
+                  type="text"
+                  id="nama_panggilan"
+                  placeholder="Nama sehari-hari"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Jenis Kelamin <span>*</span></label>
+              <div class="radio-group">
+                <label class="radio-option"
+                  ><input type="radio" name="jk" value="Laki-laki" />
+                  Laki-laki</label
+                >
+                <label class="radio-option"
+                  ><input type="radio" name="jk" value="Perempuan" />
+                  Perempuan</label
+                >
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Agama <span>*</span></label
+                ><select class="inp" id="agama">
+                  <option value="">Pilih Agama</option>
+                  <option>Islam</option>
+                  <option>Kristen</option>
+                  <option>Katolik</option>
+                  <option>Hindu</option>
+                  <option>Buddha</option>
+                  <option>Konghucu</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label"
+                  >Tempat Tinggal Lahir <span>*</span></label
+                ><input
+                  class="inp"
+                  type="text"
+                  id="tempat_lahir"
+                  placeholder="Kota kelahiran"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Tanggal Lahir <span>*</span></label
+                ><input class="inp" type="date" id="tanggal_lahir" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Anak Ke- <span>*</span></label
+                ><input
+                  class="inp"
+                  type="number"
+                  id="anak_ke"
+                  placeholder="1"
+                  min="1"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label"
+                  >Jumlah Saudara/Saudari <span>*</span></label
+                ><input
+                  class="inp"
+                  type="number"
+                  id="jumlah_saudara"
+                  placeholder="0"
+                  min="0"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label"
+                  >No. Telepon Keluarga <span>*</span></label
+                ><input
+                  class="inp"
+                  type="tel"
+                  id="no_telepon"
+                  placeholder="08xxxxxxxxxx"
+                />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Alamat, Telepon <span>*</span></label
+              ><textarea
+                class="inp"
+                id="alamat_anak"
+                placeholder="Jalan, RT/RW, No. Rumah, Kelurahan, Kecamatan"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Size Baju Seragam</label>
+              <div class="radio-group">
+                <label class="radio-option"
+                  ><input type="radio" name="size_seragam" value="S" /> S</label
+                >
+                <label class="radio-option"
+                  ><input type="radio" name="size_seragam" value="M" /> M</label
+                >
+                <label class="radio-option"
+                  ><input type="radio" name="size_seragam" value="L" /> L</label
+                >
+                <label class="radio-option"
+                  ><input type="radio" name="size_seragam" value="XL" />
+                  XL</label
+                >
+                <label class="radio-option"
+                  ><input type="radio" name="size_seragam" value="XXL" />
+                  XXL</label
+                >
+                <label class="radio-option"
+                  ><input type="radio" name="size_seragam" value="XXXL" />
+                  XXXL</label
+                >
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn-next" onclick="next(1)">
+                Lanjut → Data Ayah
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: DATA AYAH -->
+        <div class="form-step" id="step-2">
+          <div class="card-top">
+            <div class="card-top-icon">👨</div>
+            <div>
+              <h3>Data Ayah</h3>
+              <p>Informasi lengkap ayah / wali laki-laki</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nama Ayah <span>*</span></label
+                ><input
+                  class="inp"
+                  type="text"
+                  id="nama_ayah"
+                  placeholder="Nama lengkap ayah"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label"
+                  >Tempat Tanggal Lahir (Ayah) <span>*</span></label
+                ><input
+                  class="inp"
+                  type="text"
+                  id="ttl_ayah"
+                  placeholder="Jakarta, 1 Januari 1980"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Pekerjaan (Ayah) <span>*</span></label
+                ><input
+                  class="inp"
+                  type="text"
+                  id="pekerjaan_ayah"
+                  placeholder="Pekerjaan ayah"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Agama (Ayah) <span>*</span></label
+                ><select class="inp" id="agama_ayah">
+                  <option value="">Pilih Agama</option>
+                  <option>Islam</option>
+                  <option>Kristen</option>
+                  <option>Katolik</option>
+                  <option>Hindu</option>
+                  <option>Buddha</option>
+                  <option>Konghucu</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"
+                >Pendidikan Terakhir (Ayah) <span>*</span></label
+              ><select class="inp" id="pendidikan_ayah">
+                <option value="">Pilih Pendidikan</option>
+                <option>SD</option>
+                <option>SMP</option>
+                <option>SMA/SMK</option>
+                <option>D1</option>
+                <option>D2</option>
+                <option>D3</option>
+                <option>S1</option>
+                <option>S2</option>
+                <option>S3</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label"
+                >Alamat Rumah (Ayah) <span>*</span></label
+              ><textarea
+                class="inp"
+                id="alamat_ayah"
+                placeholder="Alamat lengkap rumah ayah"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Alamat Kantor, Telepon</label
+              ><input
+                class="inp"
+                type="text"
+                id="kantor_ayah"
+                placeholder="Jl. Sudirman No. 1, Telp: 021-xxxxx"
+              />
+            </div>
+            <div class="btn-row">
+              <button class="btn-prev" onclick="prev(2)">← Kembali</button
+              ><button class="btn-next" onclick="next(2)">
+                Lanjut → Data Ibu
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: DATA IBU -->
+        <div class="form-step" id="step-3">
+          <div class="card-top">
+            <div class="card-top-icon">👩</div>
+            <div>
+              <h3>Data Ibu</h3>
+              <p>Informasi lengkap ibu / wali perempuan</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Nama Ibu <span>*</span></label
+                ><input
+                  class="inp"
+                  type="text"
+                  id="nama_ibu"
+                  placeholder="Nama lengkap ibu"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label"
+                  >Tempat Tanggal Lahir (Ibu) <span>*</span></label
+                ><input
+                  class="inp"
+                  type="text"
+                  id="ttl_ibu"
+                  placeholder="Bandung, 5 Maret 1983"
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Pekerjaan (Ibu)</label
+                ><input
+                  class="inp"
+                  type="text"
+                  id="pekerjaan_ibu"
+                  placeholder="Pekerjaan ibu"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Agama (Ibu) <span>*</span></label
+                ><select class="inp" id="agama_ibu">
+                  <option value="">Pilih Agama</option>
+                  <option>Islam</option>
+                  <option>Kristen</option>
+                  <option>Katolik</option>
+                  <option>Hindu</option>
+                  <option>Buddha</option>
+                  <option>Konghucu</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"
+                >Pendidikan Terakhir (Ibu) <span>*</span></label
+              ><select class="inp" id="pendidikan_ibu">
+                <option value="">Pilih Pendidikan</option>
+                <option>SD</option>
+                <option>SMP</option>
+                <option>SMA/SMK</option>
+                <option>D1</option>
+                <option>D2</option>
+                <option>D3</option>
+                <option>S1</option>
+                <option>S2</option>
+                <option>S3</option>
+                <option>Lainnya</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Alamat Rumah (Ibu) <span>*</span></label
+              ><textarea
+                class="inp"
+                id="alamat_ibu"
+                placeholder="Alamat lengkap rumah ibu"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Alamat Kantor, Telepon (Ibu)</label
+              ><input
+                class="inp"
+                type="text"
+                id="kantor_ibu"
+                placeholder="Jl. Thamrin No. 5, Telp: 021-xxxxx"
+              />
+            </div>
+            <div class="btn-row">
+              <button class="btn-prev" onclick="prev(3)">← Kembali</button
+              ><button class="btn-next" onclick="next(3)">
+                Lanjut → Buat Akun
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: AKUN -->
+        <div class="form-step" id="step-4">
+          <div class="card-top">
+            <div class="card-top-icon">🔐</div>
+            <div>
+              <h3>Buat Akun Login</h3>
+              <p>Untuk memantau status pendaftaran</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label"
+                >Nama Wali (untuk akun) <span>*</span></label
+              ><input
+                class="inp"
+                type="text"
+                id="nama_ortu"
+                placeholder="Nama ayah / ibu / wali"
+              />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email Akun <span>*</span></label
+              ><input
+                class="inp"
+                type="email"
+                id="email"
+                placeholder="email@contoh.com"
+              />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Password <span>*</span></label
+                ><input
+                  class="inp"
+                  type="password"
+                  id="password"
+                  placeholder="Min. 6 karakter"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label"
+                  >Konfirmasi Password <span>*</span></label
+                ><input
+                  class="inp"
+                  type="password"
+                  id="conf_pass"
+                  placeholder="Ulangi password"
+                />
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn-prev" onclick="prev(4)">← Kembali</button
+              ><button class="btn-submit-reg" onclick="submitDaftar()">
+                Daftar & Lanjut →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5: UPLOAD -->
+        <div class="form-step" id="step-5">
+          <div class="card-top">
+            <div class="card-top-icon">📁</div>
+            <div>
+              <h3>Upload Dokumen</h3>
+              <p>Format JPG, PNG, PDF — Maks 5MB per file</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label class="form-label">Akta Kelahiran <span>*</span></label>
+              <div class="upload-box" id="ub-akta">
+                <input
+                  type="file"
+                  accept=".jpg,.jpeg,.png,.pdf"
+                  onchange="showFile(this, 'ub-akta', 'fn-akta')"
+                />
+                <div class="upload-icon">📄</div>
+                <div class="upload-txt">Klik untuk upload Akta Kelahiran</div>
+                <div class="upload-name" id="fn-akta"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label"
+                >Kartu Keluarga (KK) <span>*</span></label
+              >
+              <div class="upload-box" id="ub-kk">
+                <input
+                  type="file"
+                  accept=".jpg,.jpeg,.png,.pdf"
+                  onchange="showFile(this, 'ub-kk', 'fn-kk')"
+                />
+                <div class="upload-icon">📋</div>
+                <div class="upload-txt">Klik untuk upload Kartu Keluarga</div>
+                <div class="upload-name" id="fn-kk"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Foto Anak <span>*</span></label>
+              <div class="upload-box" id="ub-foto">
+                <input
+                  type="file"
+                  accept=".jpg,.jpeg,.png"
+                  onchange="showFile(this, 'ub-foto', 'fn-foto')"
+                />
+                <div class="upload-icon">📷</div>
+                <div class="upload-txt">Klik untuk upload Foto Anak (3x4)</div>
+                <div class="upload-name" id="fn-foto"></div>
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn-submit-reg" onclick="submitDokumen()">
+                Selesai & Kirim →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUKSES -->
+        <div class="form-step" id="step-sukses">
+          <div class="card-body">
+            <div class="sukses">
+              <div class="sukses-icon">✅</div>
+              <h3>Pendaftaran Berhasil!</h3>
+              <p>
+                Data dan dokumen Anda telah berhasil dikirim.<br />Silakan
+                pantau status melalui dashboard.
+              </p>
+              <a href="/dashboard" class="btn-dash">Lihat Dashboard →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="/images/logo.png" alt="Logo" />
+          <h3>TK AL ANSHOR</h3>
+          <p>
+            Taman Kanak-Kanak Islami yang berkomitmen pada pendidikan karakter
+            dan prestasi anak.
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>Contact Info</h4>
+          <p><strong>Telepon</strong></p>
+          <p>081298077964</p>
+          <p style="margin-top: 10px"><strong>Alamat</strong></p>
+          <p>Jl. Raya Legok, Kec. Legok,<br />Kab. Tangerang, Prov. Banten.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Media Sosial</h4>
+          <div class="footer-social">
+            <a href="#" class="social-link"
+              ><span class="social-icon si-fb"
+                ><i class="fab fa-facebook-f"></i></span
+              >@RA Al-Anshor Legok</a
+            >
+            <a href="#" class="social-link"
+              ><span class="social-icon si-ig"
+                ><i class="fab fa-instagram"></i></span
+              >@ra.alanshor</a
+            >
+            <a href="#" class="social-link"
+              ><span class="social-icon si-yt"
+                ><i class="fab fa-youtube"></i></span
+              >RA. Al-Anshor</a
+            >
+          </div>
+        </div>
+      </div>
+      <hr class="footer-divider" />
+      <p class="footer-copy">© 2026 TK AL ANSHOR. All rights reserved.</p>
+    </footer>
+
+    <script>
+      function toggleMenu() {
+        const menu = document.getElementById("mobileMenu");
+        if (menu) menu.classList.toggle("show");
+      }
+
+      function showErr(m) {
+        const e = document.getElementById("err-box");
+        e.textContent = m;
+        e.classList.add("show");
+        e.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      function hideErr() {
+        document.getElementById("err-box").classList.remove("show");
+      }
+      function getRadio(name) {
+        const r = document.querySelector(`input[name="${name}"]:checked`);
+        return r ? r.value : "";
+      }
+      function showFile(inp, boxId, nameId) {
+        if (inp.files.length) {
+          document.getElementById(nameId).textContent =
+            "✓ " + inp.files[0].name;
+          document.getElementById(boxId).classList.add("has-file");
+        }
+      }
+
+      function goStep(n) {
+        document
+          .querySelectorAll(".form-step")
+          .forEach((s) => s.classList.remove("active"));
+        document
+          .getElementById("step-" + (n === "sukses" ? "sukses" : n))
+          .classList.add("active");
+        for (let i = 1; i <= 5; i++) {
+          const si = document.getElementById("si-" + i),
+            sl = document.getElementById("sl-" + i);
+          if (!si) continue;
+          si.classList.remove("active", "done");
+          if (sl) sl.classList.remove("done");
+          if (n === "sukses" || i < n) {
+            si.classList.add("done");
+            if (sl) sl.classList.add("done");
+          } else if (i === n) si.classList.add("active");
+        }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        hideErr();
+      }
+      function prev(f) {
+        goStep(f - 1);
+      }
+      function next(f) {
+        hideErr();
+        if (f === 1) {
+          if (!document.getElementById("nama_anak").value.trim())
+            return showErr("Nama Siswa/Siswi wajib diisi");
+          if (!document.getElementById("nama_panggilan").value.trim())
+            return showErr("Nama Panggilan wajib diisi");
+          if (!getRadio("jk")) return showErr("Jenis Kelamin wajib dipilih");
+          if (!document.getElementById("agama").value)
+            return showErr("Agama wajib dipilih");
+          if (!document.getElementById("tempat_lahir").value.trim())
+            return showErr("Tempat Lahir wajib diisi");
+          if (!document.getElementById("tanggal_lahir").value)
+            return showErr("Tanggal Lahir wajib diisi");
+          if (!document.getElementById("anak_ke").value)
+            return showErr("Anak Ke- wajib diisi");
+          if (!document.getElementById("no_telepon").value.trim())
+            return showErr("No. Telepon wajib diisi");
+          if (!document.getElementById("alamat_anak").value.trim())
+            return showErr("Alamat wajib diisi");
+        }
+        if (f === 2) {
+          if (!document.getElementById("nama_ayah").value.trim())
+            return showErr("Nama Ayah wajib diisi");
+          if (!document.getElementById("ttl_ayah").value.trim())
+            return showErr("TTL Ayah wajib diisi");
+          if (!document.getElementById("pekerjaan_ayah").value.trim())
+            return showErr("Pekerjaan Ayah wajib diisi");
+          if (!document.getElementById("agama_ayah").value)
+            return showErr("Agama Ayah wajib dipilih");
+          if (!document.getElementById("pendidikan_ayah").value)
+            return showErr("Pendidikan Ayah wajib dipilih");
+          if (!document.getElementById("alamat_ayah").value.trim())
+            return showErr("Alamat Ayah wajib diisi");
+        }
+        if (f === 3) {
+          if (!document.getElementById("nama_ibu").value.trim())
+            return showErr("Nama Ibu wajib diisi");
+          if (!document.getElementById("ttl_ibu").value.trim())
+            return showErr("TTL Ibu wajib diisi");
+          if (!document.getElementById("agama_ibu").value)
+            return showErr("Agama Ibu wajib dipilih");
+          if (!document.getElementById("pendidikan_ibu").value)
+            return showErr("Pendidikan Ibu wajib dipilih");
+          if (!document.getElementById("alamat_ibu").value.trim())
+            return showErr("Alamat Ibu wajib diisi");
+        }
+        goStep(f + 1);
+      }
+      function getTTL() {
+        const tmp = document.getElementById("tempat_lahir").value.trim();
+        const tgl = document.getElementById("tanggal_lahir").value;
+        if (!tgl) return tmp;
+        return `${tmp}, ${new Date(tgl).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" })}`;
+      }
+      async function submitDaftar() {
+        hideErr();
+        const nama = document.getElementById("nama_ortu").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const pass = document.getElementById("password").value;
+        const conf = document.getElementById("conf_pass").value;
+        if (!nama) return showErr("Nama Wali wajib diisi");
+        if (!email) return showErr("Email wajib diisi");
+        if (!pass || pass.length < 6)
+          return showErr("Password minimal 6 karakter");
+        if (pass !== conf) return showErr("Konfirmasi password tidak cocok");
+        const body = {
+          nama,
+          email,
+          password: pass,
+          nama_anak: document.getElementById("nama_anak").value.trim(),
+          nama_panggilan: document
+            .getElementById("nama_panggilan")
+            .value.trim(),
+          ttl: getTTL(),
+          jk: getRadio("jk"),
+          agama: document.getElementById("agama").value,
+          anak_ke: document.getElementById("anak_ke").value,
+          jumlah_saudara:
+            document.getElementById("jumlah_saudara").value || "0",
+          no_telepon: document.getElementById("no_telepon").value.trim(),
+          alamat_anak: document.getElementById("alamat_anak").value.trim(),
+          size_seragam: getRadio("size_seragam"),
+          nama_ayah: document.getElementById("nama_ayah").value.trim(),
+          ttl_ayah: document.getElementById("ttl_ayah").value.trim(),
+          pekerjaan_ayah: document
+            .getElementById("pekerjaan_ayah")
+            .value.trim(),
+          agama_ayah: document.getElementById("agama_ayah").value,
+          pendidikan_ayah: document.getElementById("pendidikan_ayah").value,
+          alamat_ayah: document.getElementById("alamat_ayah").value.trim(),
+          kantor_ayah: document.getElementById("kantor_ayah").value.trim(),
+          nama_ibu: document.getElementById("nama_ibu").value.trim(),
+          ttl_ibu: document.getElementById("ttl_ibu").value.trim(),
+          pekerjaan_ibu: document.getElementById("pekerjaan_ibu").value.trim(),
+          agama_ibu: document.getElementById("agama_ibu").value,
+          pendidikan_ibu: document.getElementById("pendidikan_ibu").value,
+          alamat_ibu: document.getElementById("alamat_ibu").value.trim(),
+          kantor_ibu: document.getElementById("kantor_ibu").value.trim(),
+          nama_ortu: nama,
+        };
+        try {
+          const res = await fetch("/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+          const data = await res.json();
+          if (!data.success) return showErr(data.message || "Gagal mendaftar");
+          goStep(5);
+        } catch (e) {
+          showErr("Gagal menghubungi server");
+        }
+      }
+      async function submitDokumen() {
+        hideErr();
+        const inputs = document.querySelectorAll('#step-5 input[type="file"]');
+        const [akta, kk, foto] = inputs;
+        if (!akta.files.length || !kk.files.length || !foto.files.length)
+          return showErr("Semua dokumen wajib diupload");
+        const fd = new FormData();
+        fd.append("akta_kelahiran", akta.files[0]);
+        fd.append("kartu_keluarga", kk.files[0]);
+        fd.append("foto_anak", foto.files[0]);
+        try {
+          const res = await fetch("/upload-dokumen", {
+            method: "POST",
+            body: fd,
+          });
+          const data = await res.json();
+          if (!data.success) return showErr(data.message || "Gagal upload");
+          goStep("sukses");
+        } catch (e) {
+          showErr("Gagal upload dokumen");
+        }
+      }
+    </script>
+    <div class="wa-wrapper">
+      <div class="wa-label">Info Pendaftaran?<br />Hubungi Admin</div>
+
+      <a
+        href="https://wa.me/6281298077964?text=Halo%20Admin%20TK%20AL%20ANSHOR,%20saya%20ingin%20bertanya%20tentang%20pendaftaran"
+        class="whatsapp-float"
+        target="_blank"
+      >
+        <i class="fab fa-whatsapp"></i>
+      </a>
+    </div>
+
+    <style>
+      .wa-wrapper {
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .wa-label {
+        background: white;
+        color: #085041;
+        padding: 10px 14px;
+        border-radius: 14px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: "Poppins", sans-serif;
+        text-align: center;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        border: 1px solid #d8ede5;
+        line-height: 1.4;
+      }
+
+      .whatsapp-float {
+        width: 78px;
+        height: 78px;
+        background: #25d366;
+        border-radius: 50%;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px;
+        text-decoration: none;
+        box-shadow: 0 10px 28px rgba(37, 211, 102, 0.45);
+        animation: waPulse 1.8s infinite;
+        transition: 0.25s;
+      }
+
+      .whatsapp-float:hover {
+        transform: scale(1.1);
+        background: #1ebd5a;
+      }
+
+      @keyframes waPulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+        }
+        70% {
+          box-shadow: 0 0 0 18px rgba(37, 211, 102, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        }
+      }
+    </style>
+  </body>
+</html>
