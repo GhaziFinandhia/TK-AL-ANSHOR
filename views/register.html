@@ -1411,7 +1411,15 @@
       async function submitDaftar() {
         hideErr();
         const nama = document.getElementById("nama_ortu").value.trim();
-        const email = document.getElementById("email").value.trim();
+        const email = document
+          .getElementById("email")
+          .value.trim()
+          .toLowerCase();
+        const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailValid.test(email)) {
+          return showErr("Format email tidak valid. Contoh: nama@gmail.com");
+        }
         const pass = document.getElementById("password").value;
         const conf = document.getElementById("conf_pass").value;
         if (!nama) return showErr("Nama Wali wajib diisi");
