@@ -557,6 +557,53 @@
           font-size: 34px;
         }
       }
+
+      /* LIGHTBOX GALERI */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.92);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 999999;
+        padding: 30px;
+      }
+
+      .lightbox.show {
+        display: flex;
+      }
+
+      .lightbox img {
+        max-width: 90%;
+        max-height: 85vh;
+        border-radius: 14px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
+        transition: transform 0.3s ease;
+        cursor: zoom-in;
+      }
+
+      .lightbox img.zoomed {
+        transform: scale(1.8);
+        cursor: zoom-out;
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 42px;
+        cursor: pointer;
+        font-weight: bold;
+      }
+
+      .lightbox-hint {
+        position: absolute;
+        bottom: 20px;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 14px;
+      }
     </style>
   </head>
 
@@ -588,7 +635,10 @@
 
     <div class="container">
       <div class="gal-grid">
-        <div class="gal-item">
+        <div
+          class="gal-item"
+          onclick="openLightbox('/images/ruang-bermain.jpg')"
+        >
           <div class="gal-bg foto-ruang"></div>
           <div class="gal-overlay"></div>
           <div class="gal-info">
@@ -597,7 +647,10 @@
           </div>
         </div>
 
-        <div class="gal-item">
+        <div
+          class="gal-item"
+          onclick="openLightbox('/images/kegiatan-menggambar.jpg')"
+        >
           <div class="gal-bg foto-gambar"></div>
           <div class="gal-overlay"></div>
           <div class="gal-info">
@@ -606,7 +659,10 @@
           </div>
         </div>
 
-        <div class="gal-item">
+        <div
+          class="gal-item"
+          onclick="openLightbox('/images/bermain-belajar.jpg')"
+        >
           <div class="gal-bg foto-bermain"></div>
           <div class="gal-overlay"></div>
           <div class="gal-info">
@@ -616,6 +672,10 @@
         </div>
 
         <div class="gal-item">
+          <div
+            class="gal-item"
+            onclick="openLightbox('/images/belajar-guru.jpeg')"
+          ></div>
           <div class="gal-bg foto-guru"></div>
           <div class="gal-overlay"></div>
           <div class="gal-info">
@@ -624,7 +684,10 @@
           </div>
         </div>
 
-        <div class="gal-item">
+        <div
+          class="gal-item"
+          onclick="openLightbox('/images/kegiatan-seni.jpeg')"
+        >
           <div class="gal-bg foto-seni"></div>
           <div class="gal-overlay"></div>
           <div class="gal-info">
@@ -633,7 +696,10 @@
           </div>
         </div>
 
-        <div class="gal-item">
+        <div
+          class="gal-item"
+          onclick="openLightbox('/images/kegiatan-menulis.jpg')"
+        >
           <div class="gal-bg foto-menulis"></div>
           <div class="gal-overlay"></div>
           <div class="gal-info">
@@ -642,7 +708,10 @@
           </div>
         </div>
 
-        <div class="gal-item">
+        <div
+          class="gal-item"
+          onclick="openLightbox('/images/belajar-huruf.jpeg')"
+        >
           <div class="gal-bg foto-huruf"></div>
           <div class="gal-overlay"></div>
           <div class="gal-info">
@@ -651,7 +720,10 @@
           </div>
         </div>
 
-        <div class="gal-item">
+        <div
+          class="gal-item"
+          onclick="openLightbox('/images/pendampingan-guru.jpeg')"
+        >
           <div class="gal-bg foto-pendampingan"></div>
           <div class="gal-overlay"></div>
           <div class="gal-info">
@@ -660,7 +732,10 @@
           </div>
         </div>
 
-        <div class="gal-item">
+        <div
+          class="gal-item"
+          onclick="openLightbox('/images/kegiatan-islami.jpeg')"
+        >
           <div class="gal-bg foto-islami"></div>
           <div class="gal-overlay"></div>
           <div class="gal-info">
@@ -748,10 +823,49 @@
       </a>
     </div>
 
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <span class="lightbox-close">&times;</span>
+      <img
+        id="lightboxImg"
+        src=""
+        alt="Preview Foto"
+        onclick="toggleZoom(event)"
+      />
+      <div class="lightbox-hint">
+        Klik foto untuk zoom • Klik area gelap untuk menutup
+      </div>
+    </div>
+
     <script>
       function toggleMenu() {
         document.getElementById("mobileMenu").classList.toggle("show");
       }
+
+      function openLightbox(src) {
+        const lightbox = document.getElementById("lightbox");
+        const img = document.getElementById("lightboxImg");
+
+        img.src = src;
+        img.classList.remove("zoomed");
+        lightbox.classList.add("show");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("show");
+        document.body.style.overflow = "auto";
+      }
+
+      function toggleZoom(event) {
+        event.stopPropagation();
+        document.getElementById("lightboxImg").classList.toggle("zoomed");
+      }
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeLightbox();
+        }
+      });
     </script>
   </body>
 </html>
