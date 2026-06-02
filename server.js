@@ -78,6 +78,7 @@ const upload = multer({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));
 app.use(
   session({
     secret: "tkalanshor_secret_key",

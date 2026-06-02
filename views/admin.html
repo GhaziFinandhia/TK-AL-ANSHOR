@@ -1079,8 +1079,38 @@
     <div class="modal-row"><span class="lbl">Email</span><span class="val">${r.email}</span></div>
     <div class="modal-row"><span class="lbl">No. Telepon</span><span class="val">${r.no_telepon || "-"}</span></div>
     <div class="modal-row"><span class="lbl">Alamat</span><span class="val">${r.alamat || "-"}</span></div>
-    <div class="modal-row"><span class="lbl">Dokumen</span><span class="${dok ? "dok-ok" : "dok-no"} val">${dok ? "✓ Lengkap" : "⚠ Belum Lengkap"}</span></div>
     <div class="modal-row">
+  <span class="lbl">Akta</span>
+  <span class="val">
+    ${
+      r.akta_kelahiran
+        ? `<a href="/uploads/${r.akta_kelahiran}" target="_blank">Lihat Akta</a>`
+        : "-"
+    }
+  </span>
+</div>
+
+<div class="modal-row">
+  <span class="lbl">KK</span>
+  <span class="val">
+    ${
+      r.kartu_keluarga
+        ? `<a href="/uploads/${r.kartu_keluarga}" target="_blank">Lihat KK</a>`
+        : "-"
+    }
+  </span>
+</div>
+
+<div class="modal-row">
+  <span class="lbl">Foto Anak</span>
+  <span class="val">
+    ${
+      r.foto_anak
+        ? `<a href="/uploads/${r.foto_anak}" target="_blank">Lihat Foto</a>`
+        : "-"
+    }
+  </span>
+</div>
   <span class="lbl">Pembayaran</span>
   <span class="val">${r.status_pembayaran || "Belum Bayar"}</span>
 </div>
@@ -1092,7 +1122,7 @@ ${
   <span class="lbl">Bukti Transfer</span>
   <a href="/uploads/${r.bukti_pembayaran}" target="_blank">
     Lihat Bukti
-  </a>
+  </a>  ---=-
 </div>
 
 <div style="margin-top:12px; display:flex; gap:10px;">
