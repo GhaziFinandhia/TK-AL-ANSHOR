@@ -613,6 +613,196 @@
         margin-right: 6px;
       }
 
+
+      /* ── BIAYA PPDB ── */
+      .biaya-section {
+        background: linear-gradient(135deg, #ffffff, #f0faf6);
+        padding: 1px 0;
+      }
+      .biaya-highlight {
+        max-width: 1160px;
+        margin: 0 auto 28px;
+        background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+        border-radius: 22px;
+        padding: 34px 36px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 24px;
+        align-items: center;
+      }
+      .biaya-highlight::before {
+        content: "✦";
+        position: absolute;
+        right: 28px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 140px;
+        color: rgba(255, 255, 255, 0.05);
+        font-family: "Amiri", serif;
+      }
+      .biaya-highlight h3 {
+        font-family: "Amiri", serif;
+        font-size: 34px;
+        margin-bottom: 8px;
+        position: relative;
+        z-index: 1;
+      }
+      .biaya-highlight p {
+        color: rgba(255,255,255,0.78);
+        line-height: 1.7;
+        font-size: 14px;
+        position: relative;
+        z-index: 1;
+      }
+      .biaya-price-box {
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 18px;
+        padding: 22px;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+      .biaya-price-box span {
+        display: block;
+        font-size: 12px;
+        color: var(--gold-light);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+      }
+      .biaya-price-box strong {
+        display: block;
+        font-size: 34px;
+        color: #fff;
+        line-height: 1.1;
+      }
+      .biaya-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        margin-bottom: 26px;
+      }
+      .biaya-card {
+        background: #fff;
+        border: 1px solid #e4ede9;
+        border-radius: 20px;
+        padding: 26px 24px;
+        box-shadow: 0 12px 32px rgba(15, 124, 94, 0.07);
+        position: relative;
+        overflow: hidden;
+        transition: 0.25s;
+      }
+      .biaya-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 16px 42px rgba(15, 124, 94, 0.13);
+      }
+      .biaya-card.popular {
+        border: 2px solid var(--gold);
+      }
+      .biaya-badge {
+        display: inline-block;
+        padding: 5px 12px;
+        border-radius: 20px;
+        background: var(--teal-light);
+        color: var(--teal);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+      .biaya-card.popular .biaya-badge {
+        background: var(--gold-light);
+        color: #7a6020;
+      }
+      .biaya-card h3 {
+        font-family: "Amiri", serif;
+        font-size: 24px;
+        color: var(--teal-dark);
+        margin-bottom: 4px;
+      }
+      .biaya-date {
+        color: var(--muted);
+        font-size: 12px;
+        margin-bottom: 16px;
+      }
+      .biaya-nominal {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--text);
+        margin-bottom: 12px;
+      }
+      .biaya-nominal small {
+        font-size: 13px;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .biaya-list {
+        list-style: none;
+        margin-top: 16px;
+      }
+      .biaya-list li {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+      .biaya-list li::before {
+        content: "✓";
+        color: var(--teal);
+        font-weight: 800;
+        margin-right: 8px;
+      }
+      .biaya-rincian {
+        background: #fff;
+        border: 1px solid #e4ede9;
+        border-radius: 20px;
+        padding: 26px;
+        box-shadow: 0 12px 32px rgba(15, 124, 94, 0.06);
+      }
+      .biaya-rincian h3 {
+        font-family: "Amiri", serif;
+        font-size: 26px;
+        color: var(--teal-dark);
+        margin-bottom: 16px;
+        text-align: center;
+      }
+      .rincian-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+      }
+      .rincian-item {
+        background: var(--teal-pale);
+        border: 1px solid #d8ede5;
+        border-radius: 14px;
+        padding: 16px;
+        text-align: center;
+      }
+      .rincian-item span {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .rincian-item strong {
+        color: var(--teal-dark);
+        font-size: 17px;
+      }
+      .biaya-note {
+        text-align: center;
+        margin-top: 18px;
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+
       /* ── CTA SECTION ── */
       .cta-section {
         background: linear-gradient(135deg, var(--teal-dark), var(--teal));
@@ -775,6 +965,17 @@
         .kepsek-list {
           grid-template-columns: 1fr;
         }
+        .biaya-highlight {
+          grid-template-columns: 1fr;
+          text-align: center;
+          padding: 28px 22px;
+        }
+        .biaya-grid {
+          grid-template-columns: 1fr;
+        }
+        .rincian-grid {
+          grid-template-columns: 1fr 1fr;
+        }
       }
 
       .menu-toggle {
@@ -928,6 +1129,12 @@
         }
         .footer-inner {
           grid-template-columns: 1fr;
+        }
+        .rincian-grid {
+          grid-template-columns: 1fr;
+        }
+        .biaya-nominal {
+          font-size: 28px;
         }
       }
     </style>
@@ -1314,12 +1521,107 @@
       </div>
     </div>
 
+    <!-- BIAYA PPDB -->
+    <div class="biaya-section">
+      <div class="section">
+        <div class="section-header">
+          <span class="section-tag">Biaya PPDB 2026/2027</span>
+          <h2 class="section-title">Biaya Terjangkau, Fasilitas Lengkap</h2>
+          <p class="section-sub">
+            Pilih gelombang pendaftaran terbaik dan dapatkan kesempatan masuk
+            lebih awal dengan biaya pendaftaran mulai dari harga promo.
+          </p>
+        </div>
+
+        <div class="biaya-highlight">
+          <div>
+            <h3>Daftar Lebih Awal, Lebih Hemat</h3>
+            <p>
+              TK AL ANSHOR membuka pendaftaran siswa baru Tahun Ajaran
+              2026/2027 dengan sistem gelombang. Semakin cepat mendaftar,
+              semakin besar kesempatan mendapatkan biaya pendaftaran promo dan
+              prioritas administrasi.
+            </p>
+          </div>
+          <div class="biaya-price-box">
+            <span>Mulai dari</span>
+            <strong>Rp100.000</strong>
+          </div>
+        </div>
+
+        <div class="biaya-grid">
+          <div class="biaya-card popular">
+            <span class="biaya-badge">Paling Hemat</span>
+            <h3>Gelombang 1</h3>
+            <div class="biaya-date">Januari – Maret 2026</div>
+            <div class="biaya-nominal">Rp100.000</div>
+            <ul class="biaya-list">
+              <li>Biaya pendaftaran promo awal</li>
+              <li>Prioritas proses administrasi</li>
+              <li>Cocok untuk orang tua yang ingin daftar lebih cepat</li>
+            </ul>
+          </div>
+
+          <div class="biaya-card">
+            <span class="biaya-badge">Reguler</span>
+            <h3>Gelombang 2</h3>
+            <div class="biaya-date">April – Juni 2026</div>
+            <div class="biaya-nominal">Rp150.000</div>
+            <ul class="biaya-list">
+              <li>Pendaftaran reguler tahun ajaran baru</li>
+              <li>Tetap mendapatkan seluruh layanan PPDB</li>
+              <li>Kuota mengikuti ketersediaan kelas</li>
+            </ul>
+          </div>
+
+          <div class="biaya-card">
+            <span class="biaya-badge">Bulanan</span>
+            <h3>SPP</h3>
+            <div class="biaya-date">Pembayaran setiap bulan</div>
+            <div class="biaya-nominal">Rp250.000 <small>/ bulan</small></div>
+            <ul class="biaya-list">
+              <li>Mendukung kegiatan belajar anak</li>
+              <li>Program pembinaan karakter Islami</li>
+              <li>Kegiatan kreatif dan edukatif sekolah</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="biaya-rincian">
+          <h3>Rincian Biaya Masuk</h3>
+          <div class="rincian-grid">
+            <div class="rincian-item">
+              <span>Uang Pangkal</span>
+              <strong>Rp1.500.000</strong>
+            </div>
+            <div class="rincian-item">
+              <span>Seragam</span>
+              <strong>Rp400.000</strong>
+            </div>
+            <div class="rincian-item">
+              <span>Perlengkapan</span>
+              <strong>Rp300.000</strong>
+            </div>
+            <div class="rincian-item">
+              <span>SPP Bulanan</span>
+              <strong>Rp250.000</strong>
+            </div>
+          </div>
+          <p class="biaya-note">
+            *Biaya dapat menyesuaikan kebijakan sekolah. Untuk informasi terbaru,
+            silakan hubungi admin TK AL ANSHOR melalui tombol WhatsApp.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- CTA -->
     <div class="section" style="padding-top: 48px; padding-bottom: 80px">
       <div class="cta-section">
-        <h2>Daftarkan Putra-Putri Anda Sekarang</h2>
+        <h2>PPDB 2026/2027 Telah Dibuka</h2>
         <p>
-          Pendaftaran tahun ajaran baru sudah dibuka. Tempat sangat terbatas!
+          Kuota siswa baru terbatas. Daftar sekarang dan dapatkan biaya
+          pendaftaran promo mulai dari Rp100.000.
         </p>
         <a href="/register" class="btn-primary">Daftar Sekarang →</a>
       </div>
