@@ -515,6 +515,104 @@
         line-height: 1.65;
       }
 
+
+
+      /* ── KEPALA SEKOLAH ── */
+      .kepsek-section {
+        background: linear-gradient(135deg, #f0faf6, #ffffff);
+      }
+      .kepsek-card {
+        background: #fff;
+        border: 1px solid #e4ede9;
+        border-radius: var(--radius-lg);
+        box-shadow: 0 16px 44px rgba(15, 124, 94, 0.08);
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 34px;
+        padding: 34px;
+        align-items: center;
+        max-width: 980px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+      }
+      .kepsek-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top right, rgba(201,168,76,0.16), transparent 36%);
+        pointer-events: none;
+      }
+      .kepsek-photo {
+        position: relative;
+        z-index: 1;
+        border-radius: 18px;
+        overflow: hidden;
+        min-height: 420px;
+        background: var(--teal-light);
+      }
+      .kepsek-photo img {
+        width: 100%;
+        height: 100%;
+        min-height: 420px;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+      }
+      .kepsek-content {
+        position: relative;
+        z-index: 1;
+      }
+      .kepsek-label {
+        display: inline-block;
+        background: var(--gold-light);
+        color: #7a6020;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 20px;
+        margin-bottom: 14px;
+      }
+      .kepsek-content h3 {
+        font-family: "Amiri", serif;
+        font-size: 34px;
+        line-height: 1.2;
+        color: var(--teal-dark);
+        margin-bottom: 6px;
+      }
+      .kepsek-role {
+        color: var(--gold);
+        font-weight: 700;
+        font-size: 14px;
+        margin-bottom: 18px;
+      }
+      .kepsek-content p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.8;
+        margin-bottom: 16px;
+      }
+      .kepsek-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-top: 18px;
+      }
+      .kepsek-point {
+        background: var(--teal-pale);
+        border: 1px solid #d8ede5;
+        border-radius: 12px;
+        padding: 12px 14px;
+        font-size: 13px;
+        color: var(--teal-dark);
+        font-weight: 600;
+      }
+      .kepsek-point span {
+        margin-right: 6px;
+      }
+
       /* ── CTA SECTION ── */
       .cta-section {
         background: linear-gradient(135deg, var(--teal-dark), var(--teal));
@@ -660,6 +758,22 @@
         .footer-inner {
           grid-template-columns: 1fr;
           gap: 28px;
+        }
+
+        .kepsek-card {
+          grid-template-columns: 1fr;
+          padding: 22px;
+          gap: 22px;
+        }
+        .kepsek-photo,
+        .kepsek-photo img {
+          min-height: 360px;
+        }
+        .kepsek-content h3 {
+          font-size: 28px;
+        }
+        .kepsek-list {
+          grid-template-columns: 1fr;
         }
       }
 
@@ -898,6 +1012,52 @@
               melalui pembelajaran yang menyenangkan.
             </li>
           </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- PROFIL KEPALA SEKOLAH -->
+    <div class="kepsek-section">
+      <div class="section">
+        <div class="section-header">
+          <span class="section-tag">Kepala Sekolah</span>
+          <h2 class="section-title">Profil Kepala Sekolah</h2>
+          <p class="section-sub">
+            Dipimpin oleh tenaga pendidik yang berpengalaman dan berkomitmen
+            dalam membentuk anak yang cerdas, mandiri, dan berakhlak mulia.
+          </p>
+        </div>
+
+        <div class="kepsek-card">
+          <div class="kepsek-photo">
+            <img src="/images/bu-kepsek.jpg" alt="Siti Yayah Faojiah S.Ag - Kepala Sekolah TK AL ANSHOR" />
+          </div>
+          <div class="kepsek-content">
+            <span class="kepsek-label">Kepala TK AL ANSHOR</span>
+            <h3>Siti Yayah Faojiah, S.Ag</h3>
+            <div class="kepsek-role">Kepala Sekolah TK AL ANSHOR</div>
+            <p>
+              Siti Yayah Faojiah, S.Ag merupakan kepala sekolah TK AL ANSHOR
+              yang berperan dalam mengarahkan kegiatan pendidikan, pembinaan
+              karakter, serta pengembangan lingkungan belajar yang Islami,
+              nyaman, dan menyenangkan bagi anak-anak.
+            </p>
+            <p>
+              Dengan semangat pendidikan anak usia dini, beliau mendukung proses
+              pembelajaran yang tidak hanya menekankan kemampuan akademik, tetapi
+              juga akhlak, kemandirian, kreativitas, dan kesiapan anak untuk
+              melanjutkan ke jenjang pendidikan dasar.
+            </p>
+
+            <div class="kepsek-list">
+              <div class="kepsek-point"><span>🌙</span>Pendidikan Islami</div>
+              <div class="kepsek-point"><span>🤝</span>Pembinaan Akhlak</div>
+              <div class="kepsek-point"><span>📚</span>Kesiapan Sekolah Dasar</div>
+              <div class="kepsek-point"><span>🎨</span>Kreativitas Anak</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
