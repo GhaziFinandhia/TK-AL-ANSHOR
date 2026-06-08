@@ -991,7 +991,18 @@
         height: 260px;
       }
 
-      /* ── LIGHTBOX FOTO HOME (STYLE GALERI) ── */
+      /* FIX LIGHTBOX KLIK FOTO HOME */
+      .activity-img {
+        cursor: zoom-in;
+      }
+      .activity-img::after,
+      .activity-label {
+        pointer-events: none;
+      }
+      .kepsek-photo {
+        cursor: zoom-in;
+      }
+
       .home-lightbox {
         position: fixed;
         inset: 0;
@@ -1002,49 +1013,39 @@
         z-index: 999999;
         padding: 30px;
       }
-
       .home-lightbox.show {
         display: flex;
       }
-
       .home-lightbox img {
         max-width: 90%;
         max-height: 85vh;
         border-radius: 14px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.45);
-        transition: transform 0.3s ease;
+        transition: transform 0.25s ease;
         cursor: zoom-in;
         object-fit: contain;
       }
-
       .home-lightbox img.zoomed {
         transform: scale(1.8);
         cursor: zoom-out;
       }
-
       .home-lightbox-close {
         position: absolute;
-        top: 20px;
-        right: 30px;
+        top: 18px;
+        right: 28px;
         color: white;
-        font-size: 42px;
+        font-size: 46px;
         cursor: pointer;
         font-weight: bold;
         z-index: 2;
       }
-
       .home-lightbox-hint {
         position: absolute;
-        bottom: 20px;
-        color: rgba(255, 255, 255, 0.75);
+        bottom: 18px;
+        color: rgba(255, 255, 255, 0.78);
         font-size: 14px;
         text-align: center;
         padding: 0 20px;
-      }
-
-      .activity-img img,
-      .kepsek-photo img {
-        cursor: zoom-in;
       }
 
       /* ── CTA SECTION ── */
@@ -1497,7 +1498,15 @@
         </div>
 
         <div class="kepsek-card">
-          <div class="kepsek-photo">
+          <div
+            class="kepsek-photo"
+            onclick="
+              openHomeLightbox(
+                '/images/bu-kepsek.jpg',
+                'Siti Yayah Faojiah S.Ag - Kepala Sekolah TK AL ANSHOR',
+              )
+            "
+          >
             <img
               src="/images/bu-kepsek.jpg"
               alt="Siti Yayah Faojiah S.Ag - Kepala Sekolah TK AL ANSHOR"
@@ -1689,7 +1698,15 @@
 
       <div class="activity-grid">
         <div class="activity-card">
-          <div class="activity-img">
+          <div
+            class="activity-img"
+            onclick="
+              openHomeLightbox(
+                '/images/manasik-haji.jpg.jpeg',
+                'Kegiatan Manasik Haji TK AL ANSHOR',
+              )
+            "
+          >
             <img
               src="/images/manasik-haji.jpg.jpeg"
               alt="Kegiatan Manasik Haji TK AL ANSHOR"
@@ -1706,7 +1723,15 @@
         </div>
 
         <div class="activity-card">
-          <div class="activity-img">
+          <div
+            class="activity-img"
+            onclick="
+              openHomeLightbox(
+                '/images/renang.jpg.jpeg',
+                'Kegiatan Renang TK AL ANSHOR',
+              )
+            "
+          >
             <img
               src="/images/renang.jpg.jpeg"
               alt="Kegiatan Renang TK AL ANSHOR"
@@ -1723,7 +1748,15 @@
         </div>
 
         <div class="activity-card">
-          <div class="activity-img">
+          <div
+            class="activity-img"
+            onclick="
+              openHomeLightbox(
+                '/images/drum-band.jpg.jpeg',
+                'Kegiatan Drum Band TK AL ANSHOR',
+              )
+            "
+          >
             <img
               src="/images/drum-band.jpg.jpeg"
               alt="Kegiatan Drum Band TK AL ANSHOR"
@@ -1740,7 +1773,15 @@
         </div>
 
         <div class="activity-card">
-          <div class="activity-img">
+          <div
+            class="activity-img"
+            onclick="
+              openHomeLightbox(
+                '/images/lomba-pntas-seni.jpg.jpeg',
+                'Lomba dan Pentas Seni TK AL ANSHOR',
+              )
+            "
+          >
             <img
               src="/images/lomba-pntas-seni.jpg.jpeg"
               alt="Lomba dan Pentas Seni TK AL ANSHOR"
@@ -1757,7 +1798,15 @@
         </div>
 
         <div class="activity-card wide">
-          <div class="activity-img">
+          <div
+            class="activity-img"
+            onclick="
+              openHomeLightbox(
+                '/images/study-wisata.jpg.jpeg',
+                'Study Objek dan Wisata Edukatif TK AL ANSHOR',
+              )
+            "
+          >
             <img
               src="/images/study-wisata.jpg.jpeg"
               alt="Study Objek dan Wisata Edukatif TK AL ANSHOR"
@@ -2088,6 +2137,7 @@
       function openHomeLightbox(src, alt) {
         const lightbox = document.getElementById("homeLightbox");
         const img = document.getElementById("homeLightboxImg");
+        if (!lightbox || !img) return;
         img.src = src;
         img.alt = alt || "Preview Foto";
         img.classList.remove("zoomed");
@@ -2098,6 +2148,7 @@
       function closeHomeLightbox() {
         const lightbox = document.getElementById("homeLightbox");
         const img = document.getElementById("homeLightboxImg");
+        if (!lightbox || !img) return;
         lightbox.classList.remove("show");
         img.classList.remove("zoomed");
         img.src = "";
@@ -2134,9 +2185,11 @@
         animatedItems.forEach((item) => observer.observe(item));
 
         document
-          .querySelectorAll(".activity-img img, .kepsek-photo img")
-          .forEach((img) => {
-            img.addEventListener("click", function (e) {
+          .querySelectorAll(".activity-img, .kepsek-photo")
+          .forEach((box) => {
+            box.addEventListener("click", function (e) {
+              const img = box.querySelector("img");
+              if (!img) return;
               e.stopPropagation();
               openHomeLightbox(
                 img.getAttribute("src"),
@@ -2146,9 +2199,7 @@
           });
 
         document.addEventListener("keydown", function (e) {
-          if (e.key === "Escape") {
-            closeHomeLightbox();
-          }
+          if (e.key === "Escape") closeHomeLightbox();
         });
       });
     </script>
