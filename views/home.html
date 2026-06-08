@@ -515,8 +515,6 @@
         line-height: 1.65;
       }
 
-
-
       /* ── KEPALA SEKOLAH ── */
       .kepsek-section {
         background: linear-gradient(135deg, #f0faf6, #ffffff);
@@ -540,7 +538,11 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at top right, rgba(201,168,76,0.16), transparent 36%);
+        background: radial-gradient(
+          circle at top right,
+          rgba(201, 168, 76, 0.16),
+          transparent 36%
+        );
         pointer-events: none;
       }
       .kepsek-photo {
@@ -613,7 +615,6 @@
         margin-right: 6px;
       }
 
-
       /* ── BIAYA PPDB ── */
       .biaya-section {
         background: linear-gradient(135deg, #ffffff, #f0faf6);
@@ -651,15 +652,15 @@
         z-index: 1;
       }
       .biaya-highlight p {
-        color: rgba(255,255,255,0.78);
+        color: rgba(255, 255, 255, 0.78);
         line-height: 1.7;
         font-size: 14px;
         position: relative;
         z-index: 1;
       }
       .biaya-price-box {
-        background: rgba(255,255,255,0.12);
-        border: 1px solid rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 18px;
         padding: 22px;
         text-align: center;
@@ -802,6 +803,193 @@
         line-height: 1.7;
       }
 
+      /* ── ANIMASI MODERN ── */
+      .anim-ready {
+        opacity: 0;
+        transform: translateY(34px);
+        transition:
+          opacity 0.75s ease,
+          transform 0.75s ease;
+      }
+      .anim-in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hero-inner {
+        animation: heroFade 1s ease forwards;
+      }
+      .nav-logo,
+      .nav-links a,
+      .menu-toggle {
+        animation: navDrop 0.7s ease both;
+      }
+      .nav-links a:nth-child(1) {
+        animation-delay: 0.08s;
+      }
+      .nav-links a:nth-child(2) {
+        animation-delay: 0.14s;
+      }
+      .nav-links a:nth-child(3) {
+        animation-delay: 0.2s;
+      }
+      .nav-links a:nth-child(4) {
+        animation-delay: 0.26s;
+      }
+      @keyframes heroFade {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.98);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes navDrop {
+        from {
+          opacity: 0;
+          transform: translateY(-14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .feat-card,
+      .prog-card,
+      .visi-card,
+      .misi-card,
+      .biaya-card,
+      .rincian-item,
+      .kepsek-card {
+        will-change: transform, opacity;
+      }
+      .feat-card:hover,
+      .prog-card:hover,
+      .biaya-card:hover,
+      .kepsek-card:hover {
+        transform: translateY(-8px);
+      }
+      .btn-primary,
+      .btn-secondary,
+      .whatsapp-float {
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-primary::after,
+      .btn-secondary::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.35),
+          transparent
+        );
+        transform: translateX(-120%);
+        transition: 0.6s;
+      }
+      .btn-primary:hover::after,
+      .btn-secondary:hover::after {
+        transform: translateX(120%);
+      }
+      .section-header .section-tag {
+        animation: softPulse 2.6s ease-in-out infinite;
+      }
+      @keyframes softPulse {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-3px);
+        }
+      }
+
+      /* ── KARTU KEGIATAN FOTO ── */
+      .activity-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .activity-card {
+        background: #fff;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        border: 1px solid #e4ede9;
+        box-shadow: 0 12px 34px rgba(15, 124, 94, 0.07);
+        transition: 0.35s ease;
+        position: relative;
+      }
+      .activity-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 18px 48px rgba(15, 124, 94, 0.15);
+      }
+      .activity-img {
+        height: 230px;
+        position: relative;
+        overflow: hidden;
+        background: var(--teal-light);
+      }
+      .activity-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition:
+          transform 0.65s ease,
+          filter 0.65s ease;
+      }
+      .activity-card:hover .activity-img img {
+        transform: scale(1.1);
+        filter: saturate(1.1) contrast(1.04);
+      }
+      .activity-img::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          transparent 42%,
+          rgba(0, 0, 0, 0.55)
+        );
+      }
+      .activity-label {
+        position: absolute;
+        left: 18px;
+        bottom: 16px;
+        z-index: 1;
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--teal-dark);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 6px 12px;
+        border-radius: 999px;
+      }
+      .activity-body {
+        padding: 22px;
+      }
+      .activity-body h3 {
+        font-family: "Amiri", serif;
+        font-size: 24px;
+        color: var(--text);
+        margin-bottom: 8px;
+      }
+      .activity-body p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+      .activity-card.wide {
+        grid-column: span 2;
+      }
+      .activity-card.wide .activity-img {
+        height: 260px;
+      }
 
       /* ── CTA SECTION ── */
       .cta-section {
@@ -964,6 +1152,12 @@
         }
         .kepsek-list {
           grid-template-columns: 1fr;
+        }
+        .activity-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .activity-card.wide {
+          grid-column: span 2;
         }
         .biaya-highlight {
           grid-template-columns: 1fr;
@@ -1130,6 +1324,16 @@
         .footer-inner {
           grid-template-columns: 1fr;
         }
+        .activity-grid {
+          grid-template-columns: 1fr;
+        }
+        .activity-card.wide {
+          grid-column: span 1;
+        }
+        .activity-img,
+        .activity-card.wide .activity-img {
+          height: 220px;
+        }
         .rincian-grid {
           grid-template-columns: 1fr;
         }
@@ -1224,8 +1428,6 @@
       </div>
     </div>
 
-
-
     <!-- PROFIL KEPALA SEKOLAH -->
     <div class="kepsek-section">
       <div class="section">
@@ -1240,7 +1442,10 @@
 
         <div class="kepsek-card">
           <div class="kepsek-photo">
-            <img src="/images/bu-kepsek.jpg" alt="Siti Yayah Faojiah S.Ag - Kepala Sekolah TK AL ANSHOR" />
+            <img
+              src="/images/bu-kepsek.jpg"
+              alt="Siti Yayah Faojiah S.Ag - Kepala Sekolah TK AL ANSHOR"
+            />
           </div>
           <div class="kepsek-content">
             <span class="kepsek-label">Kepala TK AL ANSHOR</span>
@@ -1254,15 +1459,17 @@
             </p>
             <p>
               Dengan semangat pendidikan anak usia dini, beliau mendukung proses
-              pembelajaran yang tidak hanya menekankan kemampuan akademik, tetapi
-              juga akhlak, kemandirian, kreativitas, dan kesiapan anak untuk
-              melanjutkan ke jenjang pendidikan dasar.
+              pembelajaran yang tidak hanya menekankan kemampuan akademik,
+              tetapi juga akhlak, kemandirian, kreativitas, dan kesiapan anak
+              untuk melanjutkan ke jenjang pendidikan dasar.
             </p>
 
             <div class="kepsek-list">
               <div class="kepsek-point"><span>🌙</span>Pendidikan Islami</div>
               <div class="kepsek-point"><span>🤝</span>Pembinaan Akhlak</div>
-              <div class="kepsek-point"><span>📚</span>Kesiapan Sekolah Dasar</div>
+              <div class="kepsek-point">
+                <span>📚</span>Kesiapan Sekolah Dasar
+              </div>
               <div class="kepsek-point"><span>🎨</span>Kreativitas Anak</div>
             </div>
           </div>
@@ -1361,16 +1568,15 @@
       </div>
     </div>
 
-
     <!-- PROFIL & KEGIATAN UNGGULAN -->
-    <div style="background:#f7fbf9;padding:1px 0;">
+    <div style="background: #f7fbf9; padding: 1px 0">
       <div class="section">
         <div class="section-header">
           <span class="section-tag">Profil Sekolah</span>
           <h2 class="section-title">Profil & Kegiatan TK AL ANSHOR</h2>
           <p class="section-sub">
-            Mengembangkan kecerdasan, akhlak mulia, keterampilan hidup,
-            serta kesiapan anak untuk melanjutkan pendidikan dasar.
+            Mengembangkan kecerdasan, akhlak mulia, keterampilan hidup, serta
+            kesiapan anak untuk melanjutkan pendidikan dasar.
           </p>
         </div>
 
@@ -1379,8 +1585,8 @@
             <div class="feat-icon teal">📖</div>
             <h3>Pendidikan Agama</h3>
             <p>
-              Metode Iqra, Aqidah, Hadits, Sirah Nabi, doa sehari-hari,
-              dan hafalan surat pendek.
+              Metode Iqra, Aqidah, Hadits, Sirah Nabi, doa sehari-hari, dan
+              hafalan surat pendek.
             </p>
           </div>
 
@@ -1388,8 +1594,8 @@
             <div class="feat-icon gold">🤝</div>
             <h3>Pembentukan Akhlak</h3>
             <p>
-              Menanamkan disiplin, kemandirian, keimanan, ketakwaan,
-              serta kemampuan bersosialisasi sejak usia dini.
+              Menanamkan disiplin, kemandirian, keimanan, ketakwaan, serta
+              kemampuan bersosialisasi sejak usia dini.
             </p>
           </div>
 
@@ -1418,78 +1624,110 @@
     <div class="section">
       <div class="section-header">
         <span class="section-tag">Kegiatan Siswa</span>
-        <h2 class="section-title">Aktivitas Pembelajaran & Pengembangan</h2>
+        <h2 class="section-title">Aktivitas Seru & Edukatif</h2>
         <p class="section-sub">
-          Berbagai kegiatan dirancang untuk membangun karakter, kreativitas,
-          keberanian, dan pengalaman belajar yang menyenangkan.
+          Anak-anak belajar melalui pengalaman langsung, kegiatan religi,
+          olahraga, seni, dan wisata edukatif yang menyenangkan.
         </p>
       </div>
 
-      <div class="program-grid">
-        <div class="prog-card">
-          <div class="prog-thumb" style="background:#e1f5ee;">🕋</div>
-          <div class="prog-body">
-            <span class="prog-tag teal">Religi</span>
+      <div class="activity-grid">
+        <div class="activity-card">
+          <div class="activity-img">
+            <img
+              src="/images/manasik-haji.jpg.jpeg"
+              alt="Kegiatan Manasik Haji TK AL ANSHOR"
+            />
+            <span class="activity-label">Religi</span>
+          </div>
+          <div class="activity-body">
             <h3>Manasik Haji</h3>
-            <p>Melatih pemahaman dasar ibadah haji dengan kegiatan praktik yang mudah dipahami anak.</p>
+            <p>
+              Mengenalkan nilai ibadah sejak dini melalui praktik manasik haji
+              yang mudah dipahami dan menyenangkan untuk anak-anak.
+            </p>
           </div>
         </div>
 
-        <div class="prog-card">
-          <div class="prog-thumb" style="background:#fef9e7;">🏊</div>
-          <div class="prog-body">
-            <span class="prog-tag gold">Olahraga</span>
+        <div class="activity-card">
+          <div class="activity-img">
+            <img
+              src="/images/renang.jpg.jpeg"
+              alt="Kegiatan Renang TK AL ANSHOR"
+            />
+            <span class="activity-label">Olahraga</span>
+          </div>
+          <div class="activity-body">
             <h3>Renang</h3>
-            <p>Meningkatkan keberanian, kesehatan, dan kemampuan motorik anak melalui aktivitas air.</p>
+            <p>
+              Melatih keberanian, kesehatan, dan motorik anak melalui kegiatan
+              berenang yang didampingi secara aman.
+            </p>
           </div>
         </div>
 
-        <div class="prog-card">
-          <div class="prog-thumb" style="background:#eaf0ff;">🎵</div>
-          <div class="prog-body">
-            <span class="prog-tag blue">Kreativitas</span>
+        <div class="activity-card">
+          <div class="activity-img">
+            <img
+              src="/images/drum-band.jpg.jpeg"
+              alt="Kegiatan Drum Band TK AL ANSHOR"
+            />
+            <span class="activity-label">Kreativitas</span>
+          </div>
+          <div class="activity-body">
             <h3>Drum Band</h3>
-            <p>Melatih kekompakan, ritme, kedisiplinan, dan rasa percaya diri anak.</p>
+            <p>
+              Melatih kekompakan, ritme, kedisiplinan, dan rasa percaya diri
+              anak melalui kegiatan musik bersama.
+            </p>
           </div>
         </div>
 
-        <div class="prog-card">
-          <div class="prog-thumb" style="background:#e1f5ee;">🎨</div>
-          <div class="prog-body">
-            <span class="prog-tag teal">Seni</span>
+        <div class="activity-card">
+          <div class="activity-img">
+            <img
+              src="/images/lomba-pntas-seni.jpg.jpeg"
+              alt="Lomba dan Pentas Seni TK AL ANSHOR"
+            />
+            <span class="activity-label">Seni</span>
+          </div>
+          <div class="activity-body">
             <h3>Lomba & Pentas Seni</h3>
-            <p>Mengembangkan kreativitas, keberanian tampil, dan kemampuan berekspresi anak.</p>
+            <p>
+              Mengembangkan kreativitas, keberanian tampil, dan kemampuan
+              berekspresi anak di depan teman-temannya.
+            </p>
           </div>
         </div>
 
-        <div class="prog-card">
-          <div class="prog-thumb" style="background:#fef9e7;">🌱</div>
-          <div class="prog-body">
-            <span class="prog-tag gold">Edukasi</span>
-            <h3>Study Objek & Wisata</h3>
-            <p>Memberikan pengalaman belajar langsung dari lingkungan sekitar dan alam.</p>
+        <div class="activity-card wide">
+          <div class="activity-img">
+            <img
+              src="/images/study wisata.jpg(1).jpeg"
+              alt="Study Objek dan Wisata Edukatif TK AL ANSHOR"
+            />
+            <span class="activity-label">Wisata Edukatif</span>
           </div>
-        </div>
-
-        <div class="prog-card">
-          <div class="prog-thumb" style="background:#eaf0ff;">🍳</div>
-          <div class="prog-body">
-            <span class="prog-tag blue">Mandiri</span>
-            <h3>Cooking Class</h3>
-            <p>Melatih kemandirian, kerja sama, dan keterampilan dasar melalui kegiatan memasak sederhana.</p>
+          <div class="activity-body">
+            <h3>Study Objek & Field Trip</h3>
+            <p>
+              Memberikan pengalaman belajar langsung di luar kelas agar anak
+              lebih berani, aktif, dan mengenal dunia sekitar dengan cara seru.
+            </p>
           </div>
         </div>
       </div>
     </div>
 
     <!-- SYARAT PENDAFTARAN -->
-    <div style="background:#fff;padding:1px 0;">
+    <div style="background: #fff; padding: 1px 0">
       <div class="section">
         <div class="section-header">
           <span class="section-tag">Informasi Pendaftaran</span>
           <h2 class="section-title">Syarat Penerimaan Siswa</h2>
           <p class="section-sub">
-            Persiapkan dokumen berikut agar proses pendaftaran berjalan lebih cepat dan mudah.
+            Persiapkan dokumen berikut agar proses pendaftaran berjalan lebih
+            cepat dan mudah.
           </p>
         </div>
 
@@ -1509,13 +1747,19 @@
           <div class="feat-card">
             <div class="feat-icon green">📄</div>
             <h3>Dokumen Anak</h3>
-            <p>Menyiapkan akta kelahiran dan kartu keluarga untuk kelengkapan data.</p>
+            <p>
+              Menyiapkan akta kelahiran dan kartu keluarga untuk kelengkapan
+              data.
+            </p>
           </div>
 
           <div class="feat-card">
             <div class="feat-icon blue">📞</div>
             <h3>Konfirmasi Admin</h3>
-            <p>Hubungi admin jika membutuhkan bantuan terkait pendaftaran atau pembayaran.</p>
+            <p>
+              Hubungi admin jika membutuhkan bantuan terkait pendaftaran atau
+              pembayaran.
+            </p>
           </div>
         </div>
       </div>
@@ -1537,10 +1781,10 @@
           <div>
             <h3>Daftar Lebih Awal, Lebih Hemat</h3>
             <p>
-              TK AL ANSHOR membuka pendaftaran siswa baru Tahun Ajaran
-              2026/2027 dengan sistem gelombang. Semakin cepat mendaftar,
-              semakin besar kesempatan mendapatkan biaya pendaftaran promo dan
-              prioritas administrasi.
+              TK AL ANSHOR membuka pendaftaran siswa baru Tahun Ajaran 2026/2027
+              dengan sistem gelombang. Semakin cepat mendaftar, semakin besar
+              kesempatan mendapatkan biaya pendaftaran promo dan prioritas
+              administrasi.
             </p>
           </div>
           <div class="biaya-price-box">
@@ -1608,8 +1852,8 @@
             </div>
           </div>
           <p class="biaya-note">
-            *Biaya dapat menyesuaikan kebijakan sekolah. Untuk informasi terbaru,
-            silakan hubungi admin TK AL ANSHOR melalui tombol WhatsApp.
+            *Biaya dapat menyesuaikan kebijakan sekolah. Untuk informasi
+            terbaru, silakan hubungi admin TK AL ANSHOR melalui tombol WhatsApp.
           </p>
         </div>
       </div>
@@ -1767,6 +2011,31 @@
         nav.classList.toggle("show");
         icon.textContent = nav.classList.contains("show") ? "×" : "☰";
       }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const animatedItems = document.querySelectorAll(
+          ".section-header, .visi-card, .misi-card, .kepsek-card, .feat-card, .prog-card, .activity-card, .biaya-highlight, .biaya-card, .biaya-rincian, .rincian-item, .cta-section, footer",
+        );
+
+        animatedItems.forEach((item, index) => {
+          item.classList.add("anim-ready");
+          item.style.transitionDelay = Math.min(index * 0.025, 0.28) + "s";
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("anim-in");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 },
+        );
+
+        animatedItems.forEach((item) => observer.observe(item));
+      });
     </script>
   </body>
 </html>
