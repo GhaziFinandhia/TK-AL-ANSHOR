@@ -723,6 +723,302 @@
         }
       }
     </style>
+
+    <!-- ANIMASI MODERN RESPONSIF GLOBAL -->
+    <style>
+      :root {
+        --anim-distance: 18px;
+        --anim-speed: 0.42s;
+        --anim-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        overflow-x: hidden;
+      }
+
+      .tk-anim-ready {
+        opacity: 0;
+        transform: translateY(var(--anim-distance));
+        transition:
+          opacity var(--anim-speed) var(--anim-ease),
+          transform var(--anim-speed) var(--anim-ease),
+          filter var(--anim-speed) var(--anim-ease);
+        filter: blur(2px);
+        will-change: opacity, transform, filter;
+      }
+
+      .tk-anim-ready.tk-anim-in {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+
+      .tk-anim-left {
+        transform: translateX(-22px);
+      }
+
+      .tk-anim-right {
+        transform: translateX(22px);
+      }
+
+      .tk-anim-scale {
+        transform: scale(0.97) translateY(12px);
+      }
+
+      .tk-anim-left.tk-anim-in,
+      .tk-anim-right.tk-anim-in,
+      .tk-anim-scale.tk-anim-in {
+        transform: translateX(0) translateY(0) scale(1);
+      }
+
+      nav,
+      .nav-logo,
+      .nav-links a,
+      .nav-right,
+      .menu-toggle {
+        animation: tkNavDrop 0.55s var(--anim-ease) both;
+      }
+
+      .nav-links a:nth-child(1) {
+        animation-delay: 0.04s;
+      }
+      .nav-links a:nth-child(2) {
+        animation-delay: 0.08s;
+      }
+      .nav-links a:nth-child(3) {
+        animation-delay: 0.12s;
+      }
+      .nav-links a:nth-child(4) {
+        animation-delay: 0.16s;
+      }
+      .nav-links a:nth-child(5) {
+        animation-delay: 0.2s;
+      }
+
+      @keyframes tkNavDrop {
+        from {
+          opacity: 0;
+          transform: translateY(-12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .btn-primary,
+      .btn-secondary,
+      .btn-daftar,
+      .nav-daftar,
+      .btn-login,
+      .btn-next,
+      .btn-prev,
+      .btn-submit-reg,
+      .btn-upload,
+      .btn-detail,
+      .btn-simpan,
+      .btn-tutup,
+      .btn-cetak-card,
+      button,
+      .whatsapp-float {
+        transition:
+          transform 0.22s ease,
+          box-shadow 0.22s ease,
+          background 0.22s ease,
+          color 0.22s ease,
+          border-color 0.22s ease;
+      }
+
+      .btn-primary:hover,
+      .btn-secondary:hover,
+      .btn-daftar:hover,
+      .nav-daftar:hover,
+      .btn-login:hover,
+      .btn-next:hover,
+      .btn-prev:hover,
+      .btn-submit-reg:hover,
+      .btn-upload:hover,
+      .btn-detail:hover,
+      .btn-simpan:hover,
+      .btn-tutup:hover,
+      .btn-cetak-card:hover,
+      button:hover,
+      .whatsapp-float:hover {
+        transform: translateY(-2px);
+      }
+
+      .card,
+      .form-card,
+      .login-card,
+      .table-card,
+      .stat-card,
+      .stat-chip,
+      .feat-card,
+      .prog-card,
+      .gal-item,
+      .activity-card,
+      .biaya-card,
+      .rincian-item,
+      .welcome-card,
+      .admin-banner,
+      .kepsek-card,
+      .visi-card,
+      .misi-card {
+        transition:
+          transform 0.26s ease,
+          box-shadow 0.26s ease,
+          border-color 0.26s ease,
+          opacity 0.26s ease;
+      }
+
+      .card:hover,
+      .form-card:hover,
+      .login-card:hover,
+      .table-card:hover,
+      .stat-card:hover,
+      .stat-chip:hover,
+      .feat-card:hover,
+      .prog-card:hover,
+      .activity-card:hover,
+      .biaya-card:hover,
+      .rincian-item:hover,
+      .welcome-card:hover,
+      .admin-banner:hover,
+      .kepsek-card:hover,
+      .visi-card:hover,
+      .misi-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 38px rgba(15, 124, 94, 0.12);
+      }
+
+      .gal-item:hover {
+        transform: translateY(-6px) scale(1.01);
+      }
+
+      .form-input:focus,
+      .inp:focus,
+      .modal-inp:focus,
+      .search-inp:focus,
+      input:focus,
+      select:focus,
+      textarea:focus {
+        box-shadow: 0 0 0 4px rgba(15, 124, 94, 0.1) !important;
+      }
+
+      .section-tag,
+      .nav-badge,
+      .biaya-badge,
+      .status-badge,
+      .badge,
+      .gal-tag {
+        animation: tkSoftFloat 2.8s ease-in-out infinite;
+      }
+
+      @keyframes tkSoftFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-2px);
+        }
+      }
+
+      .hero-inner,
+      .page-header h2,
+      .page-header p,
+      .page-head h2,
+      .page-head p,
+      .card-header,
+      .admin-banner,
+      .welcome-card {
+        animation: tkHeroIn 0.65s var(--anim-ease) both;
+      }
+
+      @keyframes tkHeroIn {
+        from {
+          opacity: 0;
+          transform: translateY(22px) scale(0.985);
+          filter: blur(2px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+          filter: blur(0);
+        }
+      }
+
+      .modal-overlay.open .modal,
+      .modal-overlay.open .modal-box,
+      .lightbox.show img,
+      .home-lightbox.show img,
+      .home-lightbox.active img {
+        animation: tkPop 0.22s ease both;
+      }
+
+      @keyframes tkPop {
+        from {
+          opacity: 0;
+          transform: scale(0.96);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --anim-distance: 12px;
+          --anim-speed: 0.34s;
+        }
+
+        .tk-anim-left,
+        .tk-anim-right,
+        .tk-anim-scale {
+          transform: translateY(12px);
+        }
+
+        .card:hover,
+        .form-card:hover,
+        .login-card:hover,
+        .table-card:hover,
+        .stat-card:hover,
+        .stat-chip:hover,
+        .feat-card:hover,
+        .prog-card:hover,
+        .activity-card:hover,
+        .biaya-card:hover,
+        .rincian-item:hover,
+        .welcome-card:hover,
+        .admin-banner:hover,
+        .kepsek-card:hover,
+        .visi-card:hover,
+        .misi-card:hover {
+          transform: translateY(-2px);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+        .tk-anim-ready {
+          opacity: 1 !important;
+          transform: none !important;
+          filter: none !important;
+        }
+      }
+    </style>
   </head>
   <body>
     <nav>
@@ -1592,5 +1888,106 @@
         }
       }
     </style>
+
+    <!-- SCRIPT ANIMASI MODERN RESPONSIF GLOBAL -->
+    <script>
+      (function () {
+        function initModernAnimation() {
+          const selector = [
+            ".page-header",
+            ".page-head",
+            ".section-header",
+            ".admin-banner",
+            ".welcome-card",
+            ".login-card",
+            ".form-card",
+            ".card",
+            ".table-card",
+            ".stat-card",
+            ".stat-chip",
+            ".feat-card",
+            ".prog-card",
+            ".gal-item",
+            ".activity-card",
+            ".biaya-highlight",
+            ".biaya-card",
+            ".biaya-rincian",
+            ".rincian-item",
+            ".kepsek-card",
+            ".visi-card",
+            ".misi-card",
+            ".steps",
+            ".step-item",
+            ".upload-box",
+            ".pengumuman-item",
+            ".info-row",
+            ".biaya-row",
+            ".modal-row",
+            ".footer-brand",
+            ".footer-col",
+            ".footer-social",
+            ".footer-divider",
+            ".footer-copy",
+            ".cta-section",
+          ].join(",");
+
+          const items = Array.from(document.querySelectorAll(selector)).filter(
+            (el) =>
+              !el.closest(".modal-overlay") &&
+              !el.closest(".lightbox") &&
+              !el.closest(".home-lightbox"),
+          );
+
+          items.forEach((el, index) => {
+            if (el.classList.contains("tk-anim-ready")) return;
+            el.classList.add("tk-anim-ready");
+
+            if (el.matches(".footer-brand, .card-head, .page-head"))
+              el.classList.add("tk-anim-left");
+            if (
+              el.matches(
+                ".footer-col, .stat-card:nth-child(even), .stat-chip:nth-child(even)",
+              )
+            )
+              el.classList.add("tk-anim-right");
+            if (
+              el.matches(
+                ".login-card, .form-card, .table-card, .modal, .gal-item, .activity-card, .biaya-card",
+              )
+            )
+              el.classList.add("tk-anim-scale");
+
+            el.style.transitionDelay = Math.min(index * 0.01, 0.09) + "s";
+          });
+
+          if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add("tk-anim-in");
+                    observer.unobserve(entry.target);
+                  }
+                });
+              },
+              {
+                threshold: 0.035,
+                rootMargin: "0px 0px -2% 0px",
+              },
+            );
+
+            items.forEach((el) => observer.observe(el));
+          } else {
+            items.forEach((el) => el.classList.add("tk-anim-in"));
+          }
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initModernAnimation);
+        } else {
+          initModernAnimation();
+        }
+      })();
+    </script>
   </body>
 </html>
