@@ -806,10 +806,10 @@
       /* ── ANIMASI MODERN ── */
       .anim-ready {
         opacity: 0;
-        transform: translateY(34px);
+        transform: translateY(20px);
         transition:
-          opacity 0.75s ease,
-          transform 0.75s ease;
+          opacity 0.42s ease,
+          transform 0.42s ease;
       }
       .anim-in {
         opacity: 1;
@@ -1703,7 +1703,7 @@
         <div class="activity-card wide">
           <div class="activity-img">
             <img
-              src="/images/study wisata.jpg(1).jpeg"
+              src="/images/study-wisata.jpg.jpeg"
               alt="Study Objek dan Wisata Edukatif TK AL ANSHOR"
             />
             <span class="activity-label">Wisata Edukatif</span>
@@ -2019,7 +2019,7 @@
 
         animatedItems.forEach((item, index) => {
           item.classList.add("anim-ready");
-          item.style.transitionDelay = Math.min(index * 0.025, 0.28) + "s";
+          item.style.transitionDelay = Math.min(index * 0.012, 0.1) + "s";
         });
 
         const observer = new IntersectionObserver(
@@ -2031,7 +2031,7 @@
               }
             });
           },
-          { threshold: 0.12 },
+          { threshold: 0.03, rootMargin: "0px 0px -4% 0px" },
         );
 
         animatedItems.forEach((item) => observer.observe(item));
