@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const mysql = require("mysql2");
 
 const db = mysql.createConnection({
@@ -6,6 +8,9 @@ const db = mysql.createConnection({
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 console.log("DB CONFIG:", {
