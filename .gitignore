@@ -1,8 +1,6 @@
-node_modules
+node_modules/
 .env
-uploads
-import-db.js
+public/uploads/
+uploads/
 *.sql
-.env
-node_modules
-uploads
+import-db.js

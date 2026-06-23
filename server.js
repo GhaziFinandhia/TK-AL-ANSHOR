@@ -1,9 +1,13 @@
+require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
 const session = require("express-session");
 const bcrypt = require("bcryptjs");
 const multer = require("multer");
 const fs = require("fs");
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 const db = require("./config/db");
 
 const app = express();
@@ -582,6 +586,181 @@ app.get("/cetak", cekLogin, (req, res) => {
   <script>window.onload = () => window.print();</script>
 </body>
 </html>`);
+    },
+  );
+});
+
+/* ==================================
+   LUPA PASSWORD
+================================== */
+app.get("/lupa-password", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "lupa-password.html"));
+});
+
+app.get("/reset-password", (req, res) => {
+  res.sendFile(path.join(__dirname, "views", "reset-password.html"));
+});
+
+app.post("/forgot-password", (req, res) => {
+  const { email } = req.body;
+
+  if (!email) {
+    return res.json({
+      success: false,
+      message: "Email wajib diisi.",
+    });
+  }
+
+  const cleanEmail = String(email).trim().toLowerCase();
+
+  db.query(
+    "SELECT * FROM users WHERE email = ? LIMIT 1",
+    [cleanEmail],
+    (err, result) => {
+      if (err) {
+        console.error("FORGOT PASSWORD CEK EMAIL ERROR:", err);
+        return res.json({
+          success: false,
+          message: "Terjadi kesalahan database.",
+        });
+      }
+
+      if (result.length === 0) {
+        return res.json({
+          success: false,
+          message: "Email tidak ditemukan.",
+        });
+      }
+
+      const user = result[0];
+      const token = crypto.randomBytes(32).toString("hex");
+      const expire = new Date(Date.now() + 15 * 60 * 1000);
+
+      db.query(
+        "UPDATE users SET reset_token = ?, reset_token_expire = ? WHERE id = ?",
+        [token, expire, user.id],
+        async (err2) => {
+          if (err2) {
+            console.error("UPDATE RESET TOKEN ERROR:", err2);
+            return res.json({
+              success: false,
+              message: "Gagal membuat token reset password.",
+            });
+          }
+
+          try {
+            const baseUrl = process.env.BASE_URL || "http://localhost:3000";
+            const resetLink = `${baseUrl}/reset-password?token=${token}`;
+
+            const transporter = nodemailer.createTransport({
+              service: "gmail",
+              auth: {
+                user: process.env.EMAIL_USER,
+                pass: String(process.env.EMAIL_PASS || "").replace(/\s/g, ""),
+              },
+            });
+
+            await transporter.sendMail({
+              from: `"PPDB TK Al Anshor" <${process.env.EMAIL_USER}>`,
+              to: cleanEmail,
+              subject: "Reset Password Akun PPDB TK Al Anshor",
+              html: `
+                <h2>Reset Password</h2>
+                <p>Halo, kamu menerima email ini karena ada permintaan reset password untuk akun PPDB TK Al Anshor.</p>
+                <p>Klik link di bawah ini untuk mengubah password:</p>
+                <p>
+                  <a href="${resetLink}" style="background:#0f7c5e;color:white;padding:10px 15px;text-decoration:none;border-radius:5px;">
+                    Reset Password
+                  </a>
+                </p>
+                <p>Link ini berlaku selama 15 menit.</p>
+                <p>Jika kamu tidak meminta reset password, abaikan email ini.</p>
+              `,
+            });
+
+            return res.json({
+              success: true,
+              message: "Link reset password berhasil dikirim ke email.",
+            });
+          } catch (emailErr) {
+            console.error("KIRIM EMAIL RESET ERROR:", emailErr);
+            return res.json({
+              success: false,
+              message: "Gagal mengirim email reset password.",
+            });
+          }
+        },
+      );
+    },
+  );
+});
+
+app.post("/reset-password", async (req, res) => {
+  const { token, password } = req.body;
+
+  if (!token || !password) {
+    return res.json({
+      success: false,
+      message: "Token dan password wajib diisi.",
+    });
+  }
+
+  if (password.length < 6) {
+    return res.json({
+      success: false,
+      message: "Password minimal 6 karakter.",
+    });
+  }
+
+  db.query(
+    "SELECT * FROM users WHERE reset_token = ? AND reset_token_expire > NOW() LIMIT 1",
+    [token],
+    async (err, result) => {
+      if (err) {
+        console.error("CEK RESET TOKEN ERROR:", err);
+        return res.json({
+          success: false,
+          message: "Terjadi kesalahan database.",
+        });
+      }
+
+      if (result.length === 0) {
+        return res.json({
+          success: false,
+          message: "Token tidak valid atau sudah kedaluwarsa.",
+        });
+      }
+
+      try {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        db.query(
+          `UPDATE users 
+           SET password = ?, reset_token = NULL, reset_token_expire = NULL 
+           WHERE reset_token = ?`,
+          [hashedPassword, token],
+          (err2) => {
+            if (err2) {
+              console.error("UPDATE PASSWORD ERROR:", err2);
+              return res.json({
+                success: false,
+                message: "Gagal mengubah password.",
+              });
+            }
+
+            return res.json({
+              success: true,
+              message: "Password berhasil diubah. Silakan login kembali.",
+            });
+          },
+        );
+      } catch (hashErr) {
+        console.error("HASH PASSWORD ERROR:", hashErr);
+        return res.json({
+          success: false,
+          message: "Terjadi kesalahan saat mengubah password.",
+        });
+      }
     },
   );
 });
