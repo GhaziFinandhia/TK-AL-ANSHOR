@@ -7,11 +7,12 @@ const bcrypt = require("bcryptjs");
 const multer = require("multer");
 const fs = require("fs");
 const crypto = require("crypto");
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 const db = require("./config/db");
 
 const app = express();
 const PORT = 3000;
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function ensureAdmin() {
   const email = "admin@tkalanshor.sch.id";
@@ -652,37 +653,31 @@ app.post("/forgot-password", (req, res) => {
             const baseUrl = process.env.BASE_URL || "http://localhost:3000";
             const resetLink = `${baseUrl}/reset-password?token=${token}`;
 
-            const transporter = nodemailer.createTransport({
-              host: "smtp.gmail.com",
-              port: 587,
-              secure: false,
-              family: 4,
-              auth: {
-                user: process.env.EMAIL_USER,
-                pass: String(process.env.EMAIL_PASS || "").replace(/\s/g, ""),
-              },
-              tls: {
-                rejectUnauthorized: false,
-              },
-            });
-
-            await transporter.sendMail({
-              from: `"PPDB TK Al Anshor" <${process.env.EMAIL_USER}>`,
-              to: cleanEmail,
+            const { data, error } = await resend.emails.send({
+              from: "PPDB TK Al Anshor <onboarding@resend.dev>",
+              to: [cleanEmail],
               subject: "Reset Password Akun PPDB TK Al Anshor",
               html: `
-                <h2>Reset Password</h2>
-                <p>Halo, kamu menerima email ini karena ada permintaan reset password untuk akun PPDB TK Al Anshor.</p>
-                <p>Klik link di bawah ini untuk mengubah password:</p>
-                <p>
-                  <a href="${resetLink}" style="background:#0f7c5e;color:white;padding:10px 15px;text-decoration:none;border-radius:5px;">
-                    Reset Password
-                  </a>
-                </p>
-                <p>Link ini berlaku selama 15 menit.</p>
-                <p>Jika kamu tidak meminta reset password, abaikan email ini.</p>
-              `,
+              <h2>Reset Password</h2>
+              <p>Halo, kamu menerima email ini karena ada permintaan reset password untuk akun PPDB TK Al Anshor.</p>
+              <p>Klik link di bawah ini untuk mengubah password:</p>
+              <p>
+                <a href="${resetLink}" style="background:#0f7c5e;color:white;padding:10px 15px;text-decoration:none;border-radius:5px;">
+                  Reset Password
+                </a>
+              </p>
+              <p>Link ini berlaku selama 15 menit.</p>
+              <p>Jika kamu tidak meminta reset password, abaikan email ini.</p>
+            `,
             });
+
+            if (error) {
+              console.error("RESEND EMAIL ERROR:", error);
+              return res.json({
+                success: false,
+                message: "Gagal mengirim email reset password.",
+              });
+            }
 
             return res.json({
               success: true,
