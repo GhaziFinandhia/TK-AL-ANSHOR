@@ -653,10 +653,16 @@ app.post("/forgot-password", (req, res) => {
             const resetLink = `${baseUrl}/reset-password?token=${token}`;
 
             const transporter = nodemailer.createTransport({
-              service: "gmail",
+              host: "smtp.gmail.com",
+              port: 587,
+              secure: false,
+              family: 4,
               auth: {
                 user: process.env.EMAIL_USER,
                 pass: String(process.env.EMAIL_PASS || "").replace(/\s/g, ""),
+              },
+              tls: {
+                rejectUnauthorized: false,
               },
             });
 
