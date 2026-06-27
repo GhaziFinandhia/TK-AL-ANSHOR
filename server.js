@@ -339,6 +339,7 @@ app.post(
     { name: "akta_kelahiran", maxCount: 1 },
     { name: "kartu_keluarga", maxCount: 1 },
     { name: "foto_anak", maxCount: 1 },
+    { name: "foto_ktp", maxCount: 1 },
     { name: "bukti_pembayaran", maxCount: 1 },
   ]),
   (req, res) => {
@@ -348,6 +349,7 @@ app.post(
     const akta = files.akta_kelahiran ? files.akta_kelahiran[0].filename : null;
     const kk = files.kartu_keluarga ? files.kartu_keluarga[0].filename : null;
     const foto = files.foto_anak ? files.foto_anak[0].filename : null;
+    const ktp = files.foto_ktp ? files.foto_ktp[0].filename : null;
     const bukti = files.bukti_pembayaran
       ? files.bukti_pembayaran[0].filename
       : null;
@@ -357,6 +359,7 @@ app.post(
     akta_kelahiran = COALESCE(?, akta_kelahiran),
     kartu_keluarga = COALESCE(?, kartu_keluarga),
     foto_anak = COALESCE(?, foto_anak),
+    foto_ktp = COALESCE(?, foto_ktp),
     bukti_pembayaran = COALESCE(?, bukti_pembayaran),
     status_pembayaran = CASE
       WHEN ? IS NOT NULL THEN 'Menunggu Verifikasi'
@@ -368,7 +371,7 @@ app.post(
     END,
     updated_at = NOW()
    WHERE user_id = ?`,
-      [akta, kk, foto, bukti, bukti, bukti, userId],
+      [akta, kk, foto, ktp, bukti, bukti, bukti, userId],
       (err) => {
         if (err) {
           console.error(err);
