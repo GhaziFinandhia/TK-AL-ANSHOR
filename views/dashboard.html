@@ -1108,7 +1108,7 @@
       <a href="/" class="nav-logo">
         <img src="/images/logo.png" alt="Logo" />
         <div class="nav-logo-text">
-          <h1>TK AL ANSHOR</h1>
+          <h1>RA AL ANSHOR</h1>
           <span>Taman Kanak-Kanak Islami</span>
         </div>
       </a>
@@ -1196,7 +1196,7 @@
         </div>
       </div>
       <hr class="footer-divider" />
-      <p class="footer-copy">© 2026 TK AL ANSHOR. All rights reserved.</p>
+      <p class="footer-copy">© 2026 RA AL ANSHOR. All rights reserved.</p>
     </footer>
 
     <script>
@@ -1282,6 +1282,7 @@
             akta: s.akta_kelahiran,
             kk: s.kartu_keluarga,
             foto: s.foto_anak,
+            ktp: s.foto_ktp,
           };
 
           const pembayaran = {
@@ -1289,7 +1290,7 @@
             status: s.status_pembayaran || "Belum Bayar",
           };
 
-          const allDok = dok.akta && dok.kk && dok.foto;
+          const allDok = dok.akta && dok.kk && dok.foto && dok.ktp;
 
           // Biaya pendaftaran berdasarkan periode gelombang
           const biayaNormal = Object.values(biayaMaster).reduce(
@@ -1418,6 +1419,13 @@
               <input type="file" name="foto_anak" accept=".jpg,.jpeg,.png" style="margin-left:8px"/>
             </div>
           </div>
+          <div class="file-input-row">
+            <label><i class="fas fa-id-card"></i> Foto KTP Orang Tua/Wali</label>
+            <div>
+              <span class="${dok.ktp ? "dok-ok" : "dok-no"}">${dok.ktp ? "✓ Sudah" : "✗ Belum"}</span>
+              <input type="file" name="foto_ktp" accept=".jpg,.jpeg,.png" style="margin-left:8px"/>
+            </div>
+          </div>
           <button type="submit" class="btn-upload" id="uploadBtn">
             <i class="fas fa-cloud-upload-alt"></i> Upload Dokumen
           </button>
@@ -1429,7 +1437,7 @@
       <!-- WELCOME -->
       <div class="welcome-card">
         <h2>Selamat Datang, ${user.nama}! 👋</h2>
-        <p>Dashboard Pendaftaran Siswa Baru TK AL ANSHOR — Tahun Ajaran 2026/2027</p>
+        <p>Dashboard Pendaftaran Siswa Baru RA AL ANSHOR — Tahun Ajaran 2026/2027</p>
       </div>
 
       <!-- STAT STRIP -->
@@ -1492,6 +1500,7 @@
             <div class="info-row"><span class="info-label">📄 Akta Kelahiran</span><span class="${dok.akta ? "dok-ok" : "dok-no"}">${dok.akta ? "✓ Terupload" : "✗ Belum"}</span></div>
             <div class="info-row"><span class="info-label">📋 Kartu Keluarga</span><span class="${dok.kk ? "dok-ok" : "dok-no"}">${dok.kk ? "✓ Terupload" : "✗ Belum"}</span></div>
             <div class="info-row"><span class="info-label">📷 Foto Anak</span><span class="${dok.foto ? "dok-ok" : "dok-no"}">${dok.foto ? "✓ Terupload" : "✗ Belum"}</span></div>
+            <div class="info-row"><span class="info-label">🪪 Foto KTP Orang Tua/Wali</span><span class="${dok.ktp ? "dok-ok" : "dok-no"}">${dok.ktp ? "✓ Terupload" : "✗ Belum"}</span></div>
             ${uploadHtml}
           </div>
         </div>
